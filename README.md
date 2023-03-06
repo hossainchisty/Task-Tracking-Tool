@@ -10,6 +10,8 @@
 
 * Express & Mongoose Middleware (Auth, Error Handling, etc)
 
+* Focus on security best practices.
+
 * Extensive API testing with Postman
 
 * API Documentation 
