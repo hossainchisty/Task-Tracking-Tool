@@ -2,6 +2,7 @@
 var colors = require("colors");
 const express = require("express");
 const dotenv = require("dotenv").config();
+var cors = require('cors')
 const { errorHandler } = require("./middleware/errorMiddleware");
 // Database connection with mongoose
 const connectDB = require("./config/db");
@@ -11,7 +12,8 @@ const port = process.env.PORT || 5000;
 // Express app initialization
 const app = express();
 app.use(express.json());
-
+// This is CORS-enabled for all origins!
+app.use(cors())
 
 app.use(
   express.urlencoded({

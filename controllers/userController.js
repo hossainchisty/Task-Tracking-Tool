@@ -57,11 +57,10 @@ const loginUser = asyncHandler(async (req, res) => {
   // Check for user email
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.json({
-      _id: user.id,
-      full_name: user.full_name,
-      email: user.email,
+    res.status(200)
+    res.send({
       token: generateToken(user._id),
+      message: "Logged in successfully",
     });
   } else {
     res.status(400);
@@ -92,7 +91,7 @@ const forgetPassword = asyncHandler(async (req, res) => {
   if (userExists) {
     await User.updateOne({ email: email }, { $set: { token: generateToken } });
     // We will send email here
-    sendRestPasswordEmail(full_name, email, generateToken);
+    // sendRestPasswordEmail(full_name, email, generateToken);
     res.status(200);
     res.json({ message: "Link has been send to your email!" });
   } else {
