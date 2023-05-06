@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/hossainchisty/Backend-Goals-Management/compare/v1.1.0...v2.0.0) (2023-05-06)
+
+
+### Features
+
+* Allow user to create tasks more informatic ([e2e4bd1](https://github.com/hossainchisty/Backend-Goals-Management/commit/e2e4bd1361520a451d52c05b8939ba2c8c77062c))
+
+
+### BREAKING CHANGES
+
+* Added some new database fields to track user activties
+
+
+
 # [1.1.0](https://github.com/hossainchisty/Backend-Goals-Management/compare/v1.2.0...v1.1.0) (2023-05-06)
 
 
