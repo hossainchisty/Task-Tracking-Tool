@@ -16,6 +16,6 @@
 
 * API Documentation
 
-* Automated releases on GitHub.
+* Implemented automated version control, testing, and deployment processes on GitHub, resulting in more reliable and consistent releases.
 
 Technology: Express, MongoDB, NodeJS, Docker
