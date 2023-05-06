@@ -14,6 +14,8 @@
 
 * Extensive API testing with Postman
 
-* API Documentation 
+* API Documentation
+
+* Automated releases on GitHub.
 
 Technology: Express, MongoDB, NodeJS, Docker
