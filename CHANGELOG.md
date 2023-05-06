@@ -1,4 +1,13 @@
-# 1.2.0 (2023-05-06)
+# [1.1.0](https://github.com/hossainchisty/Backend-Goals-Management/compare/v1.2.0...v1.1.0) (2023-05-06)
+
+
+### Features
+
+* Update releases.json ([336888c](https://github.com/hossainchisty/Backend-Goals-Management/commit/336888c6e820de31e00398d02c2e8b32f963929d))
+
+
+
+# [1.2.0](https://github.com/hossainchisty/Backend-Goals-Management/compare/4847384e4ad3187c3e820878f853185fc1c3d166...v1.2.0) (2023-05-06)
 
 
 ### Bug Fixes
