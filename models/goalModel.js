@@ -27,7 +27,7 @@ const goalSchema = mongoose.Schema(
     },
     deadlines: {
       type: Date,
-      default: ''
+      require: false,
     }
   },
   {
