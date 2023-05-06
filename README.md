@@ -16,4 +16,4 @@
 
 * API Documentation 
 
-Technology: Express, MongoDB, NodeJS
+Technology: Express, MongoDB, NodeJS, Docker
