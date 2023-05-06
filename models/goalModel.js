@@ -12,10 +12,25 @@ const goalSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a text value"],
     },
+    priority: {
+      type: String,
+      enum: ['low', 'medium', 'high'],
+      default: 'medium'
+    },
     status: {
       type: String,
-      enum: ["pending", "done"],
-      default: "pending",
+      enum: ['todo', 'in-progress', 'done'],
+      default: 'todo'
+    },
+    assignedTo: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
     },
     active: {
       type: Boolean,
