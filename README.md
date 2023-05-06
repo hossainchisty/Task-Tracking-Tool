@@ -18,4 +18,6 @@
 
 * Implemented automated version control, testing, and deployment processes on GitHub, resulting in more reliable and consistent releases.
 
+* Deadlines: With the deadlines feature, you can set a due date for each task and display it on the task details page. Users can see the remaining time before the deadline expires and prioritize their work accordingly. You can also sort tasks by due date and add filters to view tasks that are overdue, due today, or due in the future.
+
 Technology: Express, MongoDB, NodeJS, Docker
