@@ -1,3 +1,12 @@
+## [2.1.3](https://github.com/hossainchisty/Backend-Goals-Management/compare/v2.1.2...v2.1.3) (2023-05-07)
+
+
+### Bug Fixes
+
+* Hide version key ([620ad1b](https://github.com/hossainchisty/Backend-Goals-Management/commit/620ad1b2c2eead9cd630ec10c90b3bbb7a7c66b2))
+
+
+
 ## [2.1.2](https://github.com/hossainchisty/Backend-Goals-Management/compare/v2.1.1...v2.1.2) (2023-05-07)
 
 
@@ -36,10 +45,6 @@
 ### BREAKING CHANGES
 
 * Added some new database fields to track user activties
-
-
-
-# [1.1.0](https://github.com/hossainchisty/Backend-Goals-Management/compare/v1.1.1...v1.1.0) (2023-05-06)
 
 
 
