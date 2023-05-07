@@ -25,16 +25,7 @@ const goalSchema = mongoose.Schema(
     assignedTo: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: true
-    },
-    createdBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true
-    },
-    active: {
-      type: Boolean,
-      default: true,
+      required: false,
     },
     date: {
       type: Date,
