@@ -1,16 +1,18 @@
 // Basic Lib Imports
 var colors = require("colors");
 const express = require("express");
+const bodyParser = require('body-parser');
 const dotenv = require("dotenv").config();
 var cors = require('cors')
 const { errorHandler } = require("./middleware/errorMiddleware");
 // Database connection with mongoose
 const connectDB = require("./config/db");
 connectDB();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 
 // Express app initialization
 const app = express();
+app.use(bodyParser.json());
 app.use(express.json());
 // This is CORS-enabled for all origins!
 app.use(cors())
@@ -22,7 +24,7 @@ app.use(
 );
 
 // Routing Implement
-app.use("/api/goals", require("./routes/goalRouters"));
+app.use("/api/tasks", require("./routes/taskRouters"));
 app.use("/api/users", require("./routes/userRouters"));
 
 // Undefined Route Implement
