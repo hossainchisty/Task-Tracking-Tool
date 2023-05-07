@@ -1,3 +1,12 @@
+## [2.1.2](https://github.com/hossainchisty/Backend-Goals-Management/compare/v2.1.1...v2.1.2) (2023-05-07)
+
+
+### Reverts
+
+* Revert "♻️ fix: Refactor goal models" ([61ac06a](https://github.com/hossainchisty/Backend-Goals-Management/commit/61ac06a8eae421e0fa42b64cb1c670663405d157))
+
+
+
 ## [2.1.1](https://github.com/hossainchisty/Backend-Goals-Management/compare/v2.1.0...v2.1.1) (2023-05-07)
 
 
@@ -31,15 +40,6 @@
 
 
 # [1.1.0](https://github.com/hossainchisty/Backend-Goals-Management/compare/v1.1.1...v1.1.0) (2023-05-06)
-
-
-
-## [1.1.1](https://github.com/hossainchisty/Backend-Goals-Management/compare/v1.2.0...v1.1.1) (2023-05-06)
-
-
-### Features
-
-* Update releases.json ([336888c](https://github.com/hossainchisty/Backend-Goals-Management/commit/336888c6e820de31e00398d02c2e8b32f963929d))
 
 
 
