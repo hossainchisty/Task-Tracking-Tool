@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.3.0...v2.4.0) (2023-05-08)
+
+
+### Features
+
+* Added description options ([a181fb4](https://github.com/hossainchisty/Task-Tracking-Tool/commit/a181fb4c236f1cba2d44a9eb721f9c4f994a7758))
+
+
+
 # [2.3.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.2.0...v2.3.0) (2023-05-08)
 
 
@@ -38,15 +47,6 @@
 ### Reverts
 
 * Revert "♻️ fix: Refactor goal models" ([61ac06a](https://github.com/hossainchisty/Task-Tracking-Tool/commit/61ac06a8eae421e0fa42b64cb1c670663405d157))
-
-
-
-## [2.1.1](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.1.0...v2.1.1) (2023-05-07)
-
-
-### Bug Fixes
-
-* Fix undo pull ([69833aa](https://github.com/hossainchisty/Task-Tracking-Tool/commit/69833aab1f0cc6c283ea3fbb5a407921446e9296))
 
 
 
