@@ -37,6 +37,10 @@ const taskSchema = mongoose.Schema(
       ref: "User",
       required: false,
     },
+    collaborators: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }],
     active: { type: Boolean, default: true },
     dueDate: { type: Date, required: false },
     reminderDate: { type: Date },
@@ -55,4 +59,4 @@ taskSchema.pre("save", function (next) {
 });
 
 
-module.exports = mongoose.model("Goal", taskSchema);
+module.exports = mongoose.model("Task", taskSchema);

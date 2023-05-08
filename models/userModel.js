@@ -23,6 +23,10 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "",
     },
+    collaboratingTasks: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Task'
+    }]
   },
   { timestamps: true },
   { versionKey: false }
