@@ -1,3 +1,12 @@
+# [2.5.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.4.0...v2.5.0) (2023-05-08)
+
+
+### Features
+
+* Added collaborators field ([ce7a7ed](https://github.com/hossainchisty/Task-Tracking-Tool/commit/ce7a7edaa182b28d467cb7de263c82800fef36f3))
+
+
+
 # [2.4.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.3.0...v2.4.0) (2023-05-08)
 
 
@@ -38,15 +47,6 @@
 ### Bug Fixes
 
 * Hide version key ([620ad1b](https://github.com/hossainchisty/Task-Tracking-Tool/commit/620ad1b2c2eead9cd630ec10c90b3bbb7a7c66b2))
-
-
-
-## [2.1.2](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.1.1...v2.1.2) (2023-05-07)
-
-
-### Reverts
-
-* Revert "♻️ fix: Refactor goal models" ([61ac06a](https://github.com/hossainchisty/Task-Tracking-Tool/commit/61ac06a8eae421e0fa42b64cb1c670663405d157))
 
 
 
