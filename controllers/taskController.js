@@ -1,23 +1,23 @@
 // Basic Lib Imports
 const asyncHandler = require("express-async-handler");
-const Goal = require("../models/taskModel");
+const Task = require("../models/taskModel");
 const scheduleCronJob = require("../service/cron");
 let isCronJobScheduled = false;
 
 /**
- * @desc    Get goals and schedule a cron job for goals with reminderDate
- * @route   GET GET /api/goals
+ * @desc    Get tasks and schedule a cron job for tasks with reminderDate
+ * @route   GET GET /api/tasks
  * @access  Private
  */
 
-const getGoals = asyncHandler(async (req, res) => {
-  const goals = await Goal.find({ user: req.user.id }).sort({
+const getTask = asyncHandler(async (req, res) => {
+  const tasks = await Task.find({ user: req.user.id }).sort({
     createdAt: -1,
   });
-  goals.forEach((goal) => {
-    if (goal.reminderDate) {
+  tasks.forEach((task) => {
+    if (task.reminderDate) {
       if (!isCronJobScheduled) {
-        scheduleCronJob(goal.title);
+        scheduleCronJob(task.title);
       }
     } else {
       if (isCronJobScheduled) {
@@ -26,7 +26,7 @@ const getGoals = asyncHandler(async (req, res) => {
     }
   });
 
-  res.status(200).json(goals);
+  res.status(200).json(tasks);
 });
 
 /**
@@ -52,18 +52,18 @@ const getassignedTasks = asyncHandler(async (req, res) => {
 });
 
 /**
- * @desc    Create a new goal for the authenticated user
- * @route   POST /api/goals
+ * @desc    Create a new task for the authenticated user
+ * @route   POST /api/tasks
  * @access  Private
  */
 
-const setGoal = asyncHandler(async (req, res) => {
+const addTask = asyncHandler(async (req, res) => {
   if (!req.body.title) {
     res.status(400);
     throw new Error("Please add task title.");
   }
 
-  const goal = await Goal.create({
+  const task = await Task.create({
     user: req.user.id,
     title: req.body.title,
     description: req.body.description,
@@ -75,17 +75,17 @@ const setGoal = asyncHandler(async (req, res) => {
     reminderDate: req.body.reminderDate,
   });
 
-  res.status(200).json(goal);
+  res.status(200).json(task);
 });
 
 /**
- * @desc    Update goal
- * @route   PUT /api/goals/:id
+ * @desc    Update task
+ * @route   PUT /api/tasks/:id
  * @access  Private
  */
-const updateGoal = asyncHandler(async (req, res) => {
-  const goal = await Goal.findById(req.params.id);
-  if (!goal) {
+const updateTask = asyncHandler(async (req, res) => {
+  const task = await Task.findById(req.params.id);
+  if (!task) {
     res.status(400);
     throw new Error("Goal not found");
   }
@@ -96,27 +96,27 @@ const updateGoal = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
-  // Make sure the logged in user matches the goal user
-  if (goal.user.toString() !== req.user.id) {
+  // Make sure the logged in user matches the task user
+  if (task.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("User not authorized");
   }
-  const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
+  const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-  res.status(200).json(updatedGoal);
+  res.status(200).json(updatedTask);
 });
 
 /**
- * @desc    Delete goal
- * @route   DELETE /api/goals/:id
+ * @desc    Delete task
+ * @route   DELETE /api/tasks/:id
  * @access  Private
  */
-const deleteGoal = asyncHandler(async (req, res) => {
-  const goal = await Goal.findById(req.params.id);
-  if (!goal) {
+const deleteTask = asyncHandler(async (req, res) => {
+  const task = await Task.findById(req.params.id);
+  if (!task) {
     res.status(400);
-    throw new Error("Goal not found");
+    throw new Error("Task not found");
   }
 
   // Check for user
@@ -125,26 +125,26 @@ const deleteGoal = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
-  // Make sure the logged in user matches the goal user
-  if (goal.user.toString() !== req.user.id) {
+  // Make sure the logged in user matches the task user
+  if (task.user.toString() !== req.user.id) {
     res.status(401);
     throw new Error("User not authorized");
   }
 
-  const deletedGoal = await Goal.findByIdAndRemove(req.params.id, req.body, {
+  const deletedTask = await Task.findByIdAndRemove(req.params.id, req.body, {
     new: true,
   });
   res.status(200).json({
-    data: deletedGoal,
+    data: deletedTask,
     id: req.params.id,
-    message: "Goal were deleted.",
+    message: "Task were deleted.",
   });
 });
 
 module.exports = {
-  getGoals,
-  setGoal,
-  updateGoal,
-  deleteGoal,
+  getTask,
+  addTask,
+  updateTask,
+  deleteTask,
   getassignedTasks,
 };

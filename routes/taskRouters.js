@@ -3,18 +3,18 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  getGoals,
-  setGoal,
-  updateGoal,
-  deleteGoal,
+  getTask,
+  addTask,
+  updateTask,
+  deleteTask,
   getassignedTasks
 } = require("../controllers/taskController");
 const {protect} = require("../middleware/authMiddleware");
 
 
 // Routing Implement
-router.route('/').get(protect, getGoals).post(protect, setGoal)
-router.route('/:id').delete(protect, deleteGoal).put(protect, updateGoal)
+router.route('/').get(protect, getTask).post(protect, addTask)
+router.route('/:id').delete(protect, deleteTask).put(protect, updateTask)
 
 router.route('/assigned').get(protect, getassignedTasks)
 
