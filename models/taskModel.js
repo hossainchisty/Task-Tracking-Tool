@@ -14,6 +14,10 @@ const taskSchema = mongoose.Schema(
       type: String,
       required: [true, "Please add a text value"],
     },
+    description: {
+      type: String,
+      required: false,
+    },
     priority: {
       type: String,
       enum: ["low", "medium", "high"],
