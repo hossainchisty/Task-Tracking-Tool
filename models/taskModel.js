@@ -24,6 +24,10 @@ const taskSchema = mongoose.Schema(
       enum: ["todo", "in-progress", "done"],
       default: "todo",
     },
+    labels: {
+      type: [String],
+      required: false,
+    },
     assignedTo: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

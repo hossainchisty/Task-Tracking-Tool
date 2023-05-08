@@ -68,6 +68,7 @@ const setGoal = asyncHandler(async (req, res) => {
     title: req.body.title,
     priority: req.body.priority,
     status: req.body.status,
+    labels: req.body.labels,
     assignedTo: req.body.assignedTo,
     dueDate: req.body.dueDate,
     reminderDate: req.body.reminderDate,
