@@ -12,9 +12,8 @@ let isCronJobScheduled = false;
  */
 
 const getTask = asyncHandler(async (req, res) => {
-  const tasks = await Task.find({ user: req.user.id })
-  .sort({ createdAt: -1 })
-  
+  const tasks = await Task.find({ user: req.user.id }).sort({ createdAt: -1 });
+
   tasks.forEach((task) => {
     if (task.reminderDate) {
       if (!isCronJobScheduled) {
@@ -62,6 +61,19 @@ const getassignedTasks = asyncHandler(async (req, res) => {
  */
 
 const addTask = asyncHandler(async (req, res) => {
+  const {
+    title,
+    description,
+    priority,
+    status,
+    labels,
+    assignedTo,
+    dueDate,
+    reminderDate,
+    collaborators,
+    comments,
+  } = req.body;
+  
   if (!req.body.title) {
     res.status(400);
     throw new Error("Please add task title.");
@@ -69,16 +81,16 @@ const addTask = asyncHandler(async (req, res) => {
 
   const task = await Task.create({
     user: req.user.id,
-    title: req.body.title,
-    description: req.body.description,
-    priority: req.body.priority,
-    status: req.body.status,
-    labels: req.body.labels,
-    assignedTo: req.body.assignedTo,
-    dueDate: req.body.dueDate,
-    reminderDate: req.body.reminderDate,
-    collaborators: req.body.collaborators,
-    comments: req.body.comments,
+    title,
+    description,
+    priority,
+    status,
+    labels,
+    assignedTo,
+    dueDate,
+    reminderDate,
+    collaborators,
+    comments,
   });
 
   res.status(200).json(task);
