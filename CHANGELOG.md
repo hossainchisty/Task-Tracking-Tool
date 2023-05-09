@@ -1,3 +1,12 @@
+## [2.10.1](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.10.0...v2.10.1) (2023-05-09)
+
+
+### Performance Improvements
+
+* Added index to speed up the query. ([423d233](https://github.com/hossainchisty/Task-Tracking-Tool/commit/423d23328e1de32aab74c38e0960e727ccc778dc))
+
+
+
 # [2.10.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.9.3...v2.10.0) (2023-05-09)
 
 
@@ -31,15 +40,6 @@
 ### Performance Improvements
 
 * optimized code `deleteTask` ([ff825ef](https://github.com/hossainchisty/Task-Tracking-Tool/commit/ff825efbcdef1e127bd77fa251e5b646048dfa13))
-
-
-
-# [2.9.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.8.0...v2.9.0) (2023-05-09)
-
-
-### Features
-
-* Added comments on tasks ([b2e4b81](https://github.com/hossainchisty/Task-Tracking-Tool/commit/b2e4b81db9eda41c488df470a469569c6632fcf7))
 
 
 
