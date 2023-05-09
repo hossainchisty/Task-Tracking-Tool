@@ -1,3 +1,12 @@
+# [2.9.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.8.0...v2.9.0) (2023-05-09)
+
+
+### Features
+
+* Added comments on tasks ([b2e4b81](https://github.com/hossainchisty/Task-Tracking-Tool/commit/b2e4b81db9eda41c488df470a469569c6632fcf7))
+
+
+
 # [2.8.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.7.0...v2.8.0) (2023-05-09)
 
 
@@ -32,15 +41,6 @@
 ### Features
 
 * Added collaborators field ([ce7a7ed](https://github.com/hossainchisty/Task-Tracking-Tool/commit/ce7a7edaa182b28d467cb7de263c82800fef36f3))
-
-
-
-# [2.4.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.3.0...v2.4.0) (2023-05-08)
-
-
-### Features
-
-* Added description options ([a181fb4](https://github.com/hossainchisty/Task-Tracking-Tool/commit/a181fb4c236f1cba2d44a9eb721f9c4f994a7758))
 
 
 
