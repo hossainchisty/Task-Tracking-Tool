@@ -5,10 +5,14 @@ const User = require("../models/userModel");
 const { generateToken } = require("../helper/generateToken");
 const randomString = require("randomstring");
 const { sendRestPasswordEmail } = require("../helper/sendEmail");
+ 
+/**
+ * @desc    Register new user
+ * @route   /api/v1/users/register
+ * @method  POST
+ * @access  Public
+ */
 
-// @desc    Register new user
-// @route   POST /api/users/register
-// @access  Public
 const registerUser = asyncHandler(async (req, res) => {
   const { full_name, email, address, password } = req.body;
   if (!full_name || !email || !address || !password) {
@@ -49,9 +53,13 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Authenticate a user
-// @route   POST /api/users/login
-// @access  Public
+/**
+ * @desc    Authenticate a user
+ * @route   /api/v1/users/login
+ * @method  POST
+ * @access  Public
+ */
+
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   // Check for user email
@@ -68,16 +76,24 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Get user data
-// @route   GET /api/users/me
-// @access  Private
+/**
+ * @desc    Get user data
+ * @route   /api/V1/users/me
+ * @method  GET
+ * @access  Private
+ */
+
 const getMe = asyncHandler(async (req, res) => {
   res.json(req.user);
 });
 
-// @desc    Let people reset their own passwords
-// @route   POST /api/users/forget-password
-// @access  Public
+/**
+ * @desc    Let people reset their own passwords
+ * @route   /api/V1/users/forget-password
+ * @method  POST
+ * @access  Public
+ */
+
 const forgetPassword = asyncHandler(async (req, res) => {
   const { full_name, email } = req.body;
   if (!email) {
