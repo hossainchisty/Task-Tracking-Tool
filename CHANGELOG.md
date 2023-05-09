@@ -1,3 +1,12 @@
+## [2.9.2](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.9.1...v2.9.2) (2023-05-09)
+
+
+### Performance Improvements
+
+* Optimize to run faster n consume less memory ([66ccd14](https://github.com/hossainchisty/Task-Tracking-Tool/commit/66ccd14efb6c6987f92906ecca2916a130060139))
+
+
+
 ## [2.9.1](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.9.0...v2.9.1) (2023-05-09)
 
 
@@ -32,15 +41,6 @@
 ### Features
 
 * Collaboration features ([5a37604](https://github.com/hossainchisty/Task-Tracking-Tool/commit/5a37604c045797cf38e8e1d13df661ff42fc92ff))
-
-
-
-# [2.6.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.5.0...v2.6.0) (2023-05-08)
-
-
-### Features
-
-* Add API Version Tags ([fc8d853](https://github.com/hossainchisty/Task-Tracking-Tool/commit/fc8d8531288969a8b1244b23eadca21911155e84))
 
 
 
