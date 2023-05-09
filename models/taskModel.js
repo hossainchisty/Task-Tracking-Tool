@@ -39,7 +39,13 @@ const taskSchema = mongoose.Schema(
     },
     collaborators: [{
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User'
+      ref: 'User',
+      required: false,
+    }],
+    comments: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Comment',
+      required: false,
     }],
     active: { type: Boolean, default: true },
     dueDate: { type: Date, required: false },
