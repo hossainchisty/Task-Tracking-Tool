@@ -8,6 +8,7 @@ const {
   updateTask,
   deleteTask,
   getassignedTasks,
+  getTasksByPriority,
 } = require("../controllers/taskController");
 
 const {
@@ -43,6 +44,9 @@ router.route("/delete/:taskId/comments/:commentId").delete(protect, deleteCommen
 
 // Get comments
 router.route("/:id/comments").get(protect, getComment);
+
+// Get tasks by priority
+router.route("/priority/:priority").get(protect, getTasksByPriority);
 
 //  Removing Collaborators
 router

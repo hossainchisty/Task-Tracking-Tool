@@ -29,6 +29,32 @@ const getTask = asyncHandler(async (req, res) => {
   res.status(200).json(tasks);
 });
 
+
+/**
+ * @desc    Find tasks based on priority
+ * @route   /api/v2/priority/:priority
+ * @method  GET
+ * @access  Private
+ */
+
+const getTasksByPriority = asyncHandler(async (req, res) => {
+  const priority = req.params.priority;
+
+  // Validate priority
+  if (priority !== 'low' && priority !== 'medium' && priority !== 'high') {
+    return res.status(400).send({ error: 'Invalid priority' });
+  }
+
+  try {
+    const tasks = await Task.find({ user: req.user.id, priority: priority });
+
+    res.status(200).json(tasks);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: 'Server error' });
+  }
+});
+
 /**
  * @desc    Get all assigned tasks for a user that are due today or overdue
  * @route   /api/v2/tasks/assigned
@@ -169,5 +195,6 @@ module.exports = {
   addTask,
   updateTask,
   deleteTask,
+  getTasksByPriority,
   getassignedTasks,
 };
