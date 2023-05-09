@@ -1,3 +1,12 @@
+# [2.10.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.9.3...v2.10.0) (2023-05-09)
+
+
+### Features
+
+* **package:** Adding a new package to package.json ([1e66063](https://github.com/hossainchisty/Task-Tracking-Tool/commit/1e660637c3d113fcf31209a569645c4e3c216d99))
+
+
+
 ## [2.9.3](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.9.2...v2.9.3) (2023-05-09)
 
 
@@ -31,16 +40,6 @@
 ### Features
 
 * Added comments on tasks ([b2e4b81](https://github.com/hossainchisty/Task-Tracking-Tool/commit/b2e4b81db9eda41c488df470a469569c6632fcf7))
-
-
-
-# [2.8.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.7.0...v2.8.0) (2023-05-09)
-
-
-### Features
-
-* Added comments model ([1237684](https://github.com/hossainchisty/Task-Tracking-Tool/commit/123768408a457fdbe7b38e14e6a2a0a877ef9d93))
-* Added tasks comments db fields ([57ce780](https://github.com/hossainchisty/Task-Tracking-Tool/commit/57ce7805e6db07ea9d3a4b2f0d12d9e5a0c0e5c0))
 
 
 
