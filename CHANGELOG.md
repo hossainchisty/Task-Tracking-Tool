@@ -1,3 +1,12 @@
+## [2.9.3](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.9.2...v2.9.3) (2023-05-09)
+
+
+### Performance Improvements
+
+* improve reliability of code ([89bd3d8](https://github.com/hossainchisty/Task-Tracking-Tool/commit/89bd3d8d68e6ab07e0b50ba10e3fa767ed5ccde6))
+
+
+
 ## [2.9.2](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.9.1...v2.9.2) (2023-05-09)
 
 
@@ -32,15 +41,6 @@
 
 * Added comments model ([1237684](https://github.com/hossainchisty/Task-Tracking-Tool/commit/123768408a457fdbe7b38e14e6a2a0a877ef9d93))
 * Added tasks comments db fields ([57ce780](https://github.com/hossainchisty/Task-Tracking-Tool/commit/57ce7805e6db07ea9d3a4b2f0d12d9e5a0c0e5c0))
-
-
-
-# [2.7.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.6.0...v2.7.0) (2023-05-09)
-
-
-### Features
-
-* Collaboration features ([5a37604](https://github.com/hossainchisty/Task-Tracking-Tool/commit/5a37604c045797cf38e8e1d13df661ff42fc92ff))
 
 
 
