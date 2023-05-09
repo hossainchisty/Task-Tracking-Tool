@@ -6,7 +6,8 @@ let isCronJobScheduled = false;
 
 /**
  * @desc    Get tasks and schedule a cron job for tasks with reminderDate
- * @route   GET GET /api/tasks
+ * @route   /api/v2/tasks/
+ * @method  GET
  * @access  Private
  */
 
@@ -31,7 +32,8 @@ const getTask = asyncHandler(async (req, res) => {
 
 /**
  * @desc    Get all assigned tasks for a user that are due today or overdue
- * @route   GET /api/tasks/assigned
+ * @route   /api/v2/tasks/assigned
+ * @method  GET
  * @access  Private
  * @param   {object} req - The request object containing the user ID
  * @param   {object} res - The response object to send the tasks
@@ -40,7 +42,7 @@ const getTask = asyncHandler(async (req, res) => {
 
 const getassignedTasks = asyncHandler(async (req, res) => {
   const status = "todo";
-  const tasks = await Goal.find({
+  const tasks = await Task.find({
     assignedTo: req.user.id,
     status: status,
     dueDate: { $lte: new Date() },
@@ -53,8 +55,10 @@ const getassignedTasks = asyncHandler(async (req, res) => {
 
 /**
  * @desc    Create a new task for the authenticated user
- * @route   POST /api/tasks
+ * @route   /api/v2/tasks
+ * @method  POST
  * @access  Private
+ * @returns {object} Newly added task in json format
  */
 
 const addTask = asyncHandler(async (req, res) => {
@@ -73,6 +77,7 @@ const addTask = asyncHandler(async (req, res) => {
     assignedTo: req.body.assignedTo,
     dueDate: req.body.dueDate,
     reminderDate: req.body.reminderDate,
+    collaborators: req.body.collaborators,
   });
 
   res.status(200).json(task);
@@ -80,7 +85,8 @@ const addTask = asyncHandler(async (req, res) => {
 
 /**
  * @desc    Update task
- * @route   PUT /api/tasks/:id
+ * @route   /api/v2/tasks/:id
+ * @method  PUT
  * @access  Private
  */
 const updateTask = asyncHandler(async (req, res) => {
@@ -109,7 +115,8 @@ const updateTask = asyncHandler(async (req, res) => {
 
 /**
  * @desc    Delete task
- * @route   DELETE /api/tasks/:id
+ * @route   /api/v2/tasks/:id
+ * @method  DELETE
  * @access  Private
  */
 const deleteTask = asyncHandler(async (req, res) => {
