@@ -1,3 +1,13 @@
+# [2.8.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.7.0...v2.8.0) (2023-05-09)
+
+
+### Features
+
+* Added comments model ([1237684](https://github.com/hossainchisty/Task-Tracking-Tool/commit/123768408a457fdbe7b38e14e6a2a0a877ef9d93))
+* Added tasks comments db fields ([57ce780](https://github.com/hossainchisty/Task-Tracking-Tool/commit/57ce7805e6db07ea9d3a4b2f0d12d9e5a0c0e5c0))
+
+
+
 # [2.7.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.6.0...v2.7.0) (2023-05-09)
 
 
@@ -31,15 +41,6 @@
 ### Features
 
 * Added description options ([a181fb4](https://github.com/hossainchisty/Task-Tracking-Tool/commit/a181fb4c236f1cba2d44a9eb721f9c4f994a7758))
-
-
-
-# [2.3.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.2.0...v2.3.0) (2023-05-08)
-
-
-### Features
-
-* Added labels options ([ee3419d](https://github.com/hossainchisty/Task-Tracking-Tool/commit/ee3419d6cefafe4b31c11eda122500169f28c67e))
 
 
 
