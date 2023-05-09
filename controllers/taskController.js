@@ -91,26 +91,24 @@ const addTask = asyncHandler(async (req, res) => {
  * @access  Private
  */
 const updateTask = asyncHandler(async (req, res) => {
-  const task = await Task.findById(req.params.id);
+  const { id } = req.params;
+  const { id: userId } = req.user;
+
+  const task = await Task.findById(id).lean();
   if (!task) {
     res.status(400);
     throw new Error("Goal not found");
   }
 
-  // Check for user
-  if (!req.user) {
-    res.status(401);
-    throw new Error("User not found");
-  }
-
   // Make sure the logged in user matches the task user
-  if (task.user.toString() !== req.user.id) {
+  if (task.user.toString() !== userId) {
     res.status(401);
     throw new Error("User not authorized");
   }
-  const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
+
+  await Task.updateOne({ _id: id, user: userId }, req.body);
+
+  const updatedTask = await Task.findById(id);
   res.status(200).json(updatedTask);
 });
 
