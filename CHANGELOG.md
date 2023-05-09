@@ -1,3 +1,12 @@
+## [2.9.1](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.9.0...v2.9.1) (2023-05-09)
+
+
+### Performance Improvements
+
+* optimized code `deleteTask` ([ff825ef](https://github.com/hossainchisty/Task-Tracking-Tool/commit/ff825efbcdef1e127bd77fa251e5b646048dfa13))
+
+
+
 # [2.9.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.8.0...v2.9.0) (2023-05-09)
 
 
@@ -32,15 +41,6 @@
 ### Features
 
 * Add API Version Tags ([fc8d853](https://github.com/hossainchisty/Task-Tracking-Tool/commit/fc8d8531288969a8b1244b23eadca21911155e84))
-
-
-
-# [2.5.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.4.0...v2.5.0) (2023-05-08)
-
-
-### Features
-
-* Added collaborators field ([ce7a7ed](https://github.com/hossainchisty/Task-Tracking-Tool/commit/ce7a7edaa182b28d467cb7de263c82800fef36f3))
 
 
 
