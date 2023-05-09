@@ -1,7 +1,7 @@
 {
-  "name": "mern-backend-goals",
-  "version": "1.0.0",
-  "description": "Goalsetter Application",
+  "name": "task-tracking-tool",
+  "version": "2.7.0",
+  "description": "Task tracking software is a tool that helps individuals or teams manage and monitor the progress of their tasks or projects. It allows users to create, assign, and prioritize tasks, set deadlines, track time, and collaborate with others.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -12,6 +12,7 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
     "colors": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
@@ -20,6 +21,7 @@
     "express-rate-limit": "^6.7.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.0",
+    "node-cron": "^3.0.2",
     "nodemailer": "^6.9.1",
     "randomstring": "^1.2.3"
   },
