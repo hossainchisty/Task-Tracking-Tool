@@ -12,9 +12,9 @@ let isCronJobScheduled = false;
  */
 
 const getTask = asyncHandler(async (req, res) => {
-  const tasks = await Task.find({ user: req.user.id }).sort({
-    createdAt: -1,
-  });
+  const tasks = await Task.find({ user: req.user.id })
+  .sort({ createdAt: -1 })
+  
   tasks.forEach((task) => {
     if (task.reminderDate) {
       if (!isCronJobScheduled) {
@@ -78,6 +78,7 @@ const addTask = asyncHandler(async (req, res) => {
     dueDate: req.body.dueDate,
     reminderDate: req.body.reminderDate,
     collaborators: req.body.collaborators,
+    comments: req.body.comments,
   });
 
   res.status(200).json(task);
@@ -119,33 +120,38 @@ const updateTask = asyncHandler(async (req, res) => {
  * @method  DELETE
  * @access  Private
  */
-const deleteTask = asyncHandler(async (req, res) => {
-  const task = await Task.findById(req.params.id);
-  if (!task) {
-    res.status(400);
-    throw new Error("Task not found");
-  }
+const deleteTask = asyncHandler(async (req, res, next) => {
+  try {
+    const task = await Task.findById(req.params.id);
 
-  // Check for user
-  if (!req.user) {
-    res.status(401);
-    throw new Error("User not found");
-  }
+    if (!req.user) {
+      res.status(401);
+      throw new Error("User not found");
+    }
 
-  // Make sure the logged in user matches the task user
-  if (task.user.toString() !== req.user.id) {
-    res.status(401);
-    throw new Error("User not authorized");
-  }
+    // Make sure the logged in user matches the task user
+    if (task.user.toString() !== req.user.id) {
+      res.status(401);
+      throw new Error("User not authorized");
+    }
 
-  const deletedTask = await Task.findByIdAndRemove(req.params.id, req.body, {
-    new: true,
-  });
-  res.status(200).json({
-    data: deletedTask,
-    id: req.params.id,
-    message: "Task were deleted.",
-  });
+    const deletedTask = await Task.findByIdAndRemove(req.params.id, req.body, {
+      new: true,
+    });
+
+    if (!deletedTask) {
+      res.status(400);
+      throw new Error("Task not found");
+    }
+
+    res.status(200).json({
+      data: deletedTask,
+      id: req.params.id,
+      message: "Task was deleted.",
+    });
+  } catch (error) {
+    next(error);
+  }
 });
 
 module.exports = {
