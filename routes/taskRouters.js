@@ -9,12 +9,12 @@ const {
   deleteTask,
   getassignedTasks,
   getTasksByPriority,
+  getTasksByStatus,
 } = require("../controllers/taskController");
 
 const {
   getComment,
   addComment,
-  // updateComment,
   deleteComment
 } = require("../controllers/commentController");
 
@@ -33,8 +33,15 @@ router.route("/:id").delete(protect, deleteTask).put(protect, updateTask);
 // Assigned Tasks
 router.route("/assigned").get(protect, getassignedTasks);
 
-// Adding Collaborators
-router.route("/:taskId/collaborators/").post(protect, addCollaborator);
+// Get tasks by priority
+router.route("/priority/:priority").get(protect, getTasksByPriority);
+
+
+// Get tasks by status
+router.route("/status/:status").get(protect, getTasksByStatus);
+
+// Get comments
+router.route("/:id/comments").get(protect, getComment);
 
 // Adding Comments
 router.route("/:taskId/comments/").post(protect, addComment);
@@ -42,11 +49,8 @@ router.route("/:taskId/comments/").post(protect, addComment);
 // Removing comments
 router.route("/delete/:taskId/comments/:commentId").delete(protect, deleteComment);
 
-// Get comments
-router.route("/:id/comments").get(protect, getComment);
-
-// Get tasks by priority
-router.route("/priority/:priority").get(protect, getTasksByPriority);
+// Adding Collaborators
+router.route("/:taskId/collaborators/").post(protect, addCollaborator);
 
 //  Removing Collaborators
 router
