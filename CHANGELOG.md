@@ -1,3 +1,12 @@
+## [2.12.1](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.12.0...v2.12.1) (2023-05-10)
+
+
+### Bug Fixes
+
+* Added exports ([1e487d0](https://github.com/hossainchisty/Task-Tracking-Tool/commit/1e487d081b5b862f32fb77e188b56d0e06590ba1))
+
+
+
 # [2.12.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.11.0...v2.12.0) (2023-05-10)
 
 
@@ -32,15 +41,6 @@
 ### Features
 
 * **package:** Adding a new package to package.json ([1e66063](https://github.com/hossainchisty/Task-Tracking-Tool/commit/1e660637c3d113fcf31209a569645c4e3c216d99))
-
-
-
-## [2.9.3](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.9.2...v2.9.3) (2023-05-09)
-
-
-### Performance Improvements
-
-* improve reliability of code ([89bd3d8](https://github.com/hossainchisty/Task-Tracking-Tool/commit/89bd3d8d68e6ab07e0b50ba10e3fa767ed5ccde6))
 
 
 
