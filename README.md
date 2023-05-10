@@ -1,26 +1,45 @@
 # Task Tracking Tool🎯
 
-- Implemented JWT for authentication and authorization, securing routes and endpoints with JSON Web Tokens.
+Task Tracking Software is a Tool That Helps Individuals or Teams Manage and Monitor the Progress of Their
+Tasks or Projects. It Allows Users to Create, Assign, and Prioritize Tasks, Set Deadlines, Track Time, and Collaborate With Others.
 
-- Developed complete CRUD functionality using Express and Mongoose middleware, including auth and error handling.
+## **Features**
 
-- Focused on API security best practices to ensure safe and reliable data transfer.
+- User authentication and authorization
+- Task creation and management
+- Search and filter
+- Notification system
+- Reporting and analytics
+- Collaboration features
 
-- Setup MongoDB database in the cloud (Atlas) and optimized API performance for faster response times.
+### **User Authentication and Authorization**
 
-- Express & Mongoose Middleware (Auth, Error Handling, etc)
+This feature allows users to create accounts, authenticate using their email and password, and manage their profile. Authorization is implemented to restrict access to certain routes and resources based on user roles and permissions.
 
-- Implemented automated version control, testing, and deployment processes on GitHub, resulting in more reliable and consistent releases.
+### **Task Creation and Management**
 
-- Implemented automated version control, testing, and deployment processes on GitHub, resulting in more reliable and consistent releases.
+Users can create, edit, and delete tasks, and assign them to themselves or other users. Due dates, priorities, and labels can be added to help users manage their tasks efficiently.
 
-- Collaboration features: Allow users to collaborate on tasks and projects. Implement features such as task comments, file sharing(4.0.0), and task assignment to enable team collaboration.
+### **Search and Filter**
 
-- Deadlines: With the deadlines feature, you can set a due date for each task and display it on the task details page. Users can see the remaining time before the deadline expires and prioritize their work accordingly. You can also sort tasks by due date and add filters to view tasks that are overdue, due today, or due in the future.
+This feature allows users to search and filter tasks based on various criteria such as due date, priority, status, or other relevant information.
 
-- Successfully managed deadlines by utilizing the deadline feature, prioritizing tasks and completing work on time.
+### **Notification System**
 
-- Utilized task sorting and filtering features to easily manage tasks based on due date and status.
+Users can receive notifications via email, SMS, or push notifications to remind them of upcoming tasks and deadlines.
+
+### **Reporting and Analytics**
+
+This feature allows users to track their progress and performance using various metrics such as completed tasks, task status, and other relevant information.
+
+### **Collaboration Features**
+
+Users can collaborate on tasks and projects by adding comments, sharing files, and assigning tasks to team members.
+
+## **Conclusion**
+
+With its range of features this task tracking tool is a powerful tool for anyone looking to stay organized and productive.
 
 ### Technology
-[![Nodejs Badge](https://img.shields.io/badge/-Nodejs-3C873A?style=for-the-badge&labelColor=black&logo=node.js&logoColor=3C873A)](#) [![Express.js Badge](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](#)  [![MongoDB Badge](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](#) [![Docker Badge](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)](#) [![Github Actions Badge](https://img.shields.io/badge/Github%20Actions-282a2e?style=for-the-badge&logo=githubactions&logoColor=367cfe)](#)
+
+[![Nodejs Badge](https://img.shields.io/badge/-Nodejs-3C873A?style=for-the-badge&labelColor=black&logo=node.js&logoColor=3C873A)](#) [![Express.js Badge](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)](#) [![MongoDB Badge](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)](#) [![Docker Badge](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)](#) [![Github Actions Badge](https://img.shields.io/badge/Github%20Actions-282a2e?style=for-the-badge&logo=githubactions&logoColor=367cfe)](#)
