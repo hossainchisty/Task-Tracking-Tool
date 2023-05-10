@@ -1,3 +1,12 @@
+# [2.12.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.11.0...v2.12.0) (2023-05-10)
+
+
+### Features
+
+* Added notification model ([1043bac](https://github.com/hossainchisty/Task-Tracking-Tool/commit/1043bacadfab7e598c015922c268c095c0630b40))
+
+
+
 # [2.11.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.10.1...v2.11.0) (2023-05-10)
 
 
@@ -32,15 +41,6 @@
 ### Performance Improvements
 
 * improve reliability of code ([89bd3d8](https://github.com/hossainchisty/Task-Tracking-Tool/commit/89bd3d8d68e6ab07e0b50ba10e3fa767ed5ccde6))
-
-
-
-## [2.9.2](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.9.1...v2.9.2) (2023-05-09)
-
-
-### Performance Improvements
-
-* Optimize to run faster n consume less memory ([66ccd14](https://github.com/hossainchisty/Task-Tracking-Tool/commit/66ccd14efb6c6987f92906ecca2916a130060139))
 
 
 
