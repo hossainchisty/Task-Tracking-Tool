@@ -1,3 +1,12 @@
+# [2.14.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.13.1...v2.14.0) (2023-05-11)
+
+
+### Features
+
+* Add analytics for tasks ([516e6dd](https://github.com/hossainchisty/Task-Tracking-Tool/commit/516e6ddbc2fdd639a520fc1eb8b7bc24b05cb87a))
+
+
+
 ## [2.13.1](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.13.0...v2.13.1) (2023-05-11)
 
 
@@ -31,16 +40,6 @@
 ### Features
 
 * Added notification model ([1043bac](https://github.com/hossainchisty/Task-Tracking-Tool/commit/1043bacadfab7e598c015922c268c095c0630b40))
-
-
-
-# [2.11.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.10.1...v2.11.0) (2023-05-10)
-
-
-### Features
-
-* Added APIs To Find based on priority ([19bb71d](https://github.com/hossainchisty/Task-Tracking-Tool/commit/19bb71d043da0d27c6904268778ef59f61c9e223))
-* Find tasks based on status ([4b99b26](https://github.com/hossainchisty/Task-Tracking-Tool/commit/4b99b26e8f63571b4f18e44a7d314a0ce3ce59d9))
 
 
 
