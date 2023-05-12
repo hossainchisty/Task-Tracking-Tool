@@ -1,3 +1,12 @@
+# [2.20.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.19.0...v2.20.0) (2023-05-12)
+
+
+### Features
+
+* Added task history ([e84736f](https://github.com/hossainchisty/Task-Tracking-Tool/commit/e84736fe85462e0b5745398dd4cdfb38bab5fd81))
+
+
+
 # [2.19.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.18.0...v2.19.0) (2023-05-12)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Added task history schema ([7aa4908](https://github.com/hossainchisty/Task-Tracking-Tool/commit/7aa4908ee662032cbf52fd7b144b40d94153b34c))
-
-
-
-# [2.15.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.14.1...v2.15.0) (2023-05-12)
-
-
-### Features
-
-* Added analytics feature ([e33755b](https://github.com/hossainchisty/Task-Tracking-Tool/commit/e33755bece58016c3b50b1fdddde1d1a49eef5b4))
 
 
 
