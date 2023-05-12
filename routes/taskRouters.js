@@ -24,6 +24,8 @@ const {
 } = require("../controllers/collaboratorController");
 const { protect } = require("../middleware/authMiddleware");
 
+const {getTaskAnalytics} = require('../controllers/analyticsController')
+
 // Adding n getting tasks
 router.route("/").get(protect, getTask).post(protect, addTask);
 
@@ -51,6 +53,9 @@ router.route("/delete/:taskId/comments/:commentId").delete(protect, deleteCommen
 
 // Adding Collaborators
 router.route("/:taskId/collaborators/").post(protect, addCollaborator);
+
+// Analytics tasks
+router.route("/analytics/").get(protect, getTaskAnalytics);
 
 //  Removing Collaborators
 router
