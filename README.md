@@ -36,6 +36,10 @@ This feature allows users to track their progress and performance using various 
 
 Users can collaborate on tasks and projects by adding comments, sharing files, and assigning tasks to team members.
 
+### **Task History**
+
+Keeping a history of completed tasks can help users track their progress over time, identify patterns, and improve their productivity.
+
 ## **Conclusion**
 
 With its range of features this task tracking tool is a powerful tool for anyone looking to stay organized and productive.
