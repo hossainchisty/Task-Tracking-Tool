@@ -1,5 +1,6 @@
 // Basic Lib Imports
 const mongoose = require("mongoose");
+const Subscription = require("../models/subscriptionModel");
 
 const userSchema = mongoose.Schema(
   {
@@ -12,8 +13,9 @@ const userSchema = mongoose.Schema(
       required: [true, "Please add an email"],
       unique: true,
     },
-    address: {
+    avatar: {
       type: String,
+      required: false,
     },
     password: {
       type: String,
@@ -23,10 +25,13 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "",
     },
-    collaboratingTasks: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Task'
-    }]
+    collaboratingTasks: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Task",
+      },
+    ],
+    subscription: [Subscription.schema],
   },
   { timestamps: true },
   { versionKey: false }

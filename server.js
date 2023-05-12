@@ -27,6 +27,7 @@ app.use(
 app.use("/api/v1/users", require("./routes/userRouters"));
 app.use("/api/v2/tasks", require("./routes/taskRouters"));
 app.use("/api/v2/tasks/history", require("./routes/historyRouters"));
+app.use("/api/v2/subscription", require("./routes/subscriptionRouters"));
 
 // Undefined Route Implement
 app.use("*",(req,res)=>{
