@@ -1,3 +1,12 @@
+## [2.20.1](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.20.0...v2.20.1) (2023-05-12)
+
+
+### Bug Fixes
+
+* Hide version key ([873f9ba](https://github.com/hossainchisty/Task-Tracking-Tool/commit/873f9bacea38cbb268a24bf43d14a2a871ac2c03))
+
+
+
 # [2.20.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.19.0...v2.20.0) (2023-05-12)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Added CI/CD pipline ([bdc9bbe](https://github.com/hossainchisty/Task-Tracking-Tool/commit/bdc9bbe867f1ad300199ba64847d5690cf1b4843))
-
-
-
-# [2.16.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.15.0...v2.16.0) (2023-05-12)
-
-
-### Features
-
-* Added task history schema ([7aa4908](https://github.com/hossainchisty/Task-Tracking-Tool/commit/7aa4908ee662032cbf52fd7b144b40d94153b34c))
 
 
 
