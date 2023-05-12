@@ -8,7 +8,7 @@ const {
 
 const { protect } = require("../middleware/authMiddleware");
 
-// Adding n getting tasks
+// Getting tasks history
 router.route("/").get(protect, getTaskHistory)
 
 // Exporting the Router
