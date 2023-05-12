@@ -13,23 +13,27 @@ const Task = require("../models/taskModel");
 const getTaskAnalytics = asyncHandler(async (req, res) => {
   const completedTasks = await Task.countDocuments({
     user: req.user.id,
-    status: "completed",
+    status: "done",
   });
-  const overdueTasks = await Task.countDocuments({
+  const dueTasks = await Task.countDocuments({
     user: req.user.id,
-    status: "overdue",
+    status: "todo",
   });
   const incompleteTasks = await Task.countDocuments({
     user: req.user.id,
-    status: { $ne: "completed" },
+    status: { $ne: "in-progress" },
   });
+  const userId = req.user.id;
+  const totalTasks = await Task.countDocuments({ user: userId });
+  const taskCompleted = await Task.countDocuments({ user: userId, status: 'done' });
+  const completionRate = (taskCompleted / totalTasks) * 100;
 
   const taskAnalytics = {
     completedTasks,
-    overdueTasks,
+    dueTasks,
     incompleteTasks,
+    completionRate,
   };
-
   res.status(200).json(taskAnalytics);
 });
 
