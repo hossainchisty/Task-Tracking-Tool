@@ -2,6 +2,7 @@
 const asyncHandler = require("express-async-handler");
 const Task = require("../models/taskModel");
 const scheduleCronJob = require("../service/cron");
+const TaskHistory = require("../models/taskHistoryModel");
 let isCronJobScheduled = false;
 
 /**
@@ -142,6 +143,11 @@ const addTask = asyncHandler(async (req, res) => {
     comments,
   });
 
+  const taskHistory = await TaskHistory.create({
+    task: task._id,
+    user: req.user.id,
+    action: 'created',
+  });
   res.status(200).json(task);
 });
 
