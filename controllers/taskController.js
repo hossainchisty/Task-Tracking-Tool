@@ -174,6 +174,11 @@ const updateTask = asyncHandler(async (req, res) => {
   }
 
   await Task.updateOne({ _id: id, user: userId }, req.body);
+  const taskHistory = await TaskHistory.create({
+    task: id,
+    user: req.user.id,
+    action: 'updated',
+  });
 
   const updatedTask = await Task.findById(id);
   res.status(200).json(updatedTask);
@@ -208,6 +213,12 @@ const deleteTask = asyncHandler(async (req, res, next) => {
       res.status(400);
       throw new Error("Task not found");
     }
+
+    const taskHistory = await TaskHistory.create({
+      task: id,
+      user: req.user.id,
+      action: 'deleted',
+    });
 
     res.status(200).json({
       data: deletedTask,
