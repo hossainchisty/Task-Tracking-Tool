@@ -1,3 +1,12 @@
+# [2.16.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.15.0...v2.16.0) (2023-05-12)
+
+
+### Features
+
+* Added task history schema ([7aa4908](https://github.com/hossainchisty/Task-Tracking-Tool/commit/7aa4908ee662032cbf52fd7b144b40d94153b34c))
+
+
+
 # [2.15.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.14.1...v2.15.0) (2023-05-12)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Change version tag ([ae53eb6](https://github.com/hossainchisty/Task-Tracking-Tool/commit/ae53eb65dec1cd06618cd9ceb3d5035c1d7f4e5c))
-
-
-
-# [2.13.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.12.1...v2.13.0) (2023-05-11)
-
-
-### Features
-
-* Added vercle server configs ([e30eac6](https://github.com/hossainchisty/Task-Tracking-Tool/commit/e30eac6d416b9cd3d9a7de616f941c1b2fbc9718))
 
 
 
