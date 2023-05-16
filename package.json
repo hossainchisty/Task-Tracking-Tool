@@ -4,8 +4,22 @@
   "description": "Task tracking software is a tool that helps individuals or teams manage and monitor the progress of their tasks or projects. It allows users to create, assign, and prioritize tasks, set deadlines, track time, and collaborate with others.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "server": "nodemon server.js"
+    "test": "jest",
+    "start": "nodemon server.js",
+    "coverage": "nyc --reporter=text-lcov jest && nyc report --reporter=text-summary"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "lcov",
+      "html"
+    ],
+    "verbose": true,
+    "detectOpenHandles": true,
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/tests/**/*.test.js"
+    ]
   },
   "author": "Hossain Chisty",
   "license": "MIT",
@@ -27,6 +41,9 @@
     "randomstring": "^1.2.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.21"
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.21",
+    "nyc": "^15.1.0",
+    "supertest": "^6.3.3"
   }
 }
