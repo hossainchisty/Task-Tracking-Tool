@@ -40,6 +40,10 @@ Users can collaborate on tasks and projects by adding comments, sharing files, a
 
 Keeping a history of completed tasks can help users track their progress over time, identify patterns, and improve their productivity.
 
+### **User Activity**
+
+This feature allows users to track their activity on the platform, including the number of tasks created, completed, and deleted, and the time spent on each task. It can help users identify their most productive times of day and make adjustments to their workflow accordingly.
+
 ## **Conclusion**
 
 With its range of features this task tracking tool is a powerful tool for anyone looking to stay organized and productive.
