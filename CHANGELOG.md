@@ -1,3 +1,12 @@
+# [2.22.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.21.0...v2.22.0) (2023-05-17)
+
+
+### Features
+
+* Add API endpoint to retrieve a single task ([618b22a](https://github.com/hossainchisty/Task-Tracking-Tool/commit/618b22a64eaaf16a52b9d842aa2f29fecccca58b))
+
+
+
 # [2.21.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.20.1...v2.21.0) (2023-05-12)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Added update and delete history ([1643e28](https://github.com/hossainchisty/Task-Tracking-Tool/commit/1643e2896d500dde845f7d60ce1cfd3b721638b6))
-
-
-
-# [2.18.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.17.0...v2.18.0) (2023-05-12)
-
-
-### Features
-
-* Added task history creations ([2d797ed](https://github.com/hossainchisty/Task-Tracking-Tool/commit/2d797ed690131e1a2364f684a5b14164fe8ef563))
 
 
 
