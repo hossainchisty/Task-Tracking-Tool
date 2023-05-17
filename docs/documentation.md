@@ -22,7 +22,7 @@ To use the Task Tracking Tool, follow these steps:
 
 ## API Documentation
 
-The Task Tracking Tool also provides an API for programmatic access. Please refer to the [API documentation](./api-docs.md) for detailed information on the available endpoints, request/response formats, and authentication requirements.
+The Task Tracking Tool also provides an API for programmatic access. Please refer to the [API documentation](./docs/api-docs.md) for detailed information on the available endpoints, request/response formats, and authentication requirements.
 
 ## FAQs
 
