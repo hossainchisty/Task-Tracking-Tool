@@ -1,51 +1,40 @@
+# Task Tracking Tool Documentation
 
+The Task Tracking Tool is a web-based application that helps individuals and teams manage their tasks and track their progress. This repository contains the documentation for the Task Tracking Tool, including its features, user guide, API documentation, FAQs, and support information.
 
-#### API Routers and Methods
+## **Features**
 
-List all the API routes and HTTP methods used in the project, along with a brief description of what each endpoint does.
+- User authentication and authorization
+- Task creation and management
+- Search and filter
+- Notification system
+- Reporting and analytics
+- Collaboration features
 
-#### Task Creation and Management:
+## Getting Started
 
-- `/api/v1/tasks` - `GET`: Get all tasks
-- `/api/v1/tasks/item/:taskID` - `GET`: Get a single task
-- `/api/v1/tasks` - `POST`: Create a new task
-- `/api/v1/tasks/:taskID` - `PUT`: Update task
-- `/api/v1/tasks/:taskID` - `DELETE`: Delete task
-- `/api/v1/tasks/:taskID` - `GET`: Mark the task as completed
+To use the Task Tracking Tool, follow these steps:
 
-#### Task Sorting and Filtering:
+1. Clone the repository: `git clone https://github.com/your-username/task-tracking-tool.git`
+2. Install the dependencies: `npm install`
+3. Configure the environment variables.
+4. Start the application: `npm start`
 
-- `/api/v1/tasks/status/:status` - `GET`: Find tasks based on status
+## API Documentation
 
-- `/api/v1/tasks/priority/:priority` - `GET`: Find tasks based on priority
+The Task Tracking Tool also provides an API for programmatic access. Please refer to the [API documentation](./api-docs.md) for detailed information on the available endpoints, request/response formats, and authentication requirements.
 
-- `/api/v1/tasks/filter?sortBy=dueDate&sortDirection=asc&title=homework&dueDate=2023-05-31&priority=high` - `GET`: Get all tasks, optionally sorted and filtered
+## FAQs
 
-#### Task Categories and Tags:
+**Q: Can I collaborate with others on tasks?**
+A: Yes, you can assign tasks to individuals or teams and collaborate with them on task management.
 
-- `/api/v1/tag/` - `GET`: List of tags
+**Q: How can I track task progress?**
+A: The Task Tracking Tool allows you to update the task status, set due dates, and view the overall progress of tasks on the dashboard.
 
-- `/api/v1/tag/` - `POST`: Create a new tag
+## Support
 
-- `/api/v1/tag/:tagID` - `PUT`: Update tags
-
-- `/api/v1/tag/:tagID` - `DELETE`: Delete tags
-
-- `/api/v1/category/` - `GET`: Get all category
-
-- `/api/v1/category/` - `POST`: Create a new category
-
-- `/api/v1/category/:categoryID` - `PUT`: Update category
-
-- `/api/v1/category/:categoryID` - `DELETE`: Delete category
-
-#### User Profile:
-
-- `/api/v1/users/register` - `POST`: Register new user
-
-- `/api/v1/users/login` - `POST`: Authenticate a user
-
-- `/api/v1/users/me` - `GET`: Get user data
+For any further questions or assistance, please contact hossain.chisty11@gmail.com.
 
 Author: Hossain Chisty <br>
 Email: hossain.chisty11@gmail.com <br>
