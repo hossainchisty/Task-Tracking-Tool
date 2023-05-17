@@ -3,6 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const {
+  getTasks,
   getTask,
   addTask,
   updateTask,
@@ -27,11 +28,13 @@ const { protect } = require("../middleware/authMiddleware");
 const {getTaskAnalytics} = require('../controllers/analyticsController')
 
 // Adding n getting tasks
-router.route("/").get(protect, getTask).post(protect, addTask);
+router.route("/").get(protect, getTasks).post(protect, addTask);
 
 // Deleting n updating tasks
 router.route("/:id").delete(protect, deleteTask).put(protect, updateTask);
 
+// Retrive single task
+router.route("/item/:taskID").get(protect, getTask);
 // Assigned Tasks
 router.route("/assigned").get(protect, getassignedTasks);
 

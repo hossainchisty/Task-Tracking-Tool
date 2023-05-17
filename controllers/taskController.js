@@ -12,7 +12,7 @@ let isCronJobScheduled = false;
  * @access  Private
  */
 
-const getTask = asyncHandler(async (req, res) => {
+const getTasks = asyncHandler(async (req, res) => {
   const tasks = await Task.find({ user: req.user.id }).sort({ createdAt: -1 });
 
   tasks.forEach((task) => {
@@ -28,6 +28,24 @@ const getTask = asyncHandler(async (req, res) => {
   });
 
   res.status(200).json(tasks);
+});
+
+
+/**
+ * @desc    Get a tasks
+ * @route   /api/v1/tasks/item/:taskID
+ * @method  GET
+ * @access  Private
+ * @return Task based on the given id
+ */
+
+const getTask = asyncHandler(async (req, res) => {
+  const task = await Task.findById(req.params.taskID).lean();
+  // Check if the task exists
+  if (!task) {
+    return res.status(404).json({ error: 'Task not found' });
+  }
+  res.status(200).json(task);
 });
 
 /**
@@ -231,6 +249,7 @@ const deleteTask = asyncHandler(async (req, res, next) => {
 });
 
 module.exports = {
+  getTasks,
   getTask,
   addTask,
   updateTask,
