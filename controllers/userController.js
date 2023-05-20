@@ -4,8 +4,7 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 const { generateToken } = require("../helper/generateToken");
 const randomString = require("randomstring");
-const Subscription = require("../models/subscriptionModel");
-const { sendRestPasswordEmail } = require("../helper/sendEmail");
+const { sendResetPasswordEmail } = require("../helper/sendEmail");
  
 /**
  * @desc    Register new user
@@ -109,34 +108,69 @@ const getMe = asyncHandler(async (req, res) => {
 });
 
 /**
- * @desc    Let people reset their own passwords
- * @route   /api/V1/users/forget-password
+ * @desc    Handles the forget password functionality for users
+ * @route   /api/v1/users/forget-password
  * @method  POST
  * @access  Public
  */
 
 const forgetPassword = asyncHandler(async (req, res) => {
-  const { full_name, email } = req.body;
+  const { email } = req.body;
   if (!email) {
-    res.status(400);
-    throw new Error("Please fillup email field.");
+    res.status(400).json({ message: "Please fill up the email field." });
+    return;
   }
+
   // Generate random token
-  const generateToken = randomString.generateToken();
+  const generateToken = randomString.generate();
+
   // Check if user exists
   const userExists = await User.findOne({ email });
   if (userExists) {
-    await User.updateOne({ email: email }, { $set: { token: generateToken } });
-    // We will send email here
-    // sendRestPasswordEmail(full_name, email, generateToken);
-    res.status(200);
-    res.json({ message: "Link has been send to your email!" });
+    await User.updateOne({ email }, { $set: { token: generateToken } });
+
+    // Print reset password email details in console
+    await sendResetPasswordEmail(email, generateToken);
+
+    res.status(200).json({ message: "Link has been sent to your email!" });
   } else {
-    res.status(400);
-    throw new Error("Email doesn't exist!");
+    res.status(400).json({ message: "Email doesn't exist!" });
   }
-  res.json({ message: "Welcome to forget passwrod" });
 });
+
+
+/**
+ * @desc    Handles the password reset functionality for users
+ * @route   /api/v1/users/reset-password
+ * @method  POST
+ * @param   {Object} req - The request object
+ * @param   {Object} res - The response object
+ * @returns {Object} JSON response indicating the success or failure of the password reset
+ * @throws  {Error} If an error occurs while resetting the password
+ */
+const resetPassword = async (req, res) => {
+  const { token, newPassword } = req.body;
+
+  try {
+    // Validate the token and find the user
+    const user = await User.findOne({ token });
+    if (!user) {
+      res.status(400).json({ message: "Invalid or expired token." });
+      return;
+    }
+
+    // Update the user's password
+    user.password = newPassword;
+    user.token = null; // Remove the token after password reset
+    await user.save();
+
+    res.json({ message: "Password reset successful." });
+  } catch (error) {
+    console.error("Error resetting password:", error);
+    res.status(500).json({ message: "An error occurred while resetting the password." });
+  }
+};
+
 
 module.exports = {
   registerUser,
@@ -144,4 +178,5 @@ module.exports = {
   logoutUser,
   getMe,
   forgetPassword,
+  resetPassword,
 };

@@ -15,6 +15,7 @@ const {
   logoutUser,
   getMe,
   forgetPassword,
+  resetPassword,
 } = require("../controllers/userController");
 
 const { protect } = require("../middleware/authMiddleware");
@@ -36,5 +37,6 @@ router.get("/me", protect, getMe);
 // Apply the rate limiting middleware to API calls only
 router.post("/register", createAccountLimiter, registerUser);
 router.post("/forget-password", forgetPassword);
+router.post("/reset-password", resetPassword);
 
 module.exports = router;
