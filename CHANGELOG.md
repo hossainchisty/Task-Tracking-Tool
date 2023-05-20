@@ -1,3 +1,17 @@
+# [2.26.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.25.0...v2.26.0) (2023-05-20)
+
+
+### Bug Fixes
+
+* app.js to use good security practices, parse request bodies, and enable CORS. ([31a5138](https://github.com/hossainchisty/Task-Tracking-Tool/commit/31a5138d29e118e5364e92c21f0a69f0f33ae192))
+
+
+### Features
+
+* Implement rate limitation and brute force protection for user login ([0a0c832](https://github.com/hossainchisty/Task-Tracking-Tool/commit/0a0c832737d44c672b22eb06f2e574bdd90c4dec))
+
+
+
 # [2.25.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.24.0...v2.25.0) (2023-05-20)
 
 
@@ -34,15 +48,6 @@
 ### Features
 
 * Add API endpoint to retrieve a single task ([618b22a](https://github.com/hossainchisty/Task-Tracking-Tool/commit/618b22a64eaaf16a52b9d842aa2f29fecccca58b))
-
-
-
-# [2.21.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.20.1...v2.21.0) (2023-05-12)
-
-
-### Features
-
-* Added subscription feature ([5b4c41f](https://github.com/hossainchisty/Task-Tracking-Tool/commit/5b4c41fcb3fc25ab10d3273b416cfadbf22ea1ce))
 
 
 
