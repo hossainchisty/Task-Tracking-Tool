@@ -161,10 +161,10 @@ const addTask = asyncHandler(async (req, res) => {
     comments,
   });
 
-  const taskHistory = await TaskHistory.create({
+  await TaskHistory.create({
     task: task._id,
     user: req.user.id,
-    action: 'created',
+    action: 'Added tasks',
   });
   res.status(200).json(task);
 });
@@ -192,10 +192,10 @@ const updateTask = asyncHandler(async (req, res) => {
   }
 
   await Task.updateOne({ _id: id, user: userId }, req.body);
-  const taskHistory = await TaskHistory.create({
+  await TaskHistory.create({
     task: id,
     user: req.user.id,
-    action: 'updated',
+    action: 'Updated tasks',
   });
 
   const updatedTask = await Task.findById(id);
@@ -232,10 +232,10 @@ const deleteTask = asyncHandler(async (req, res, next) => {
       throw new Error("Task not found");
     }
 
-    const taskHistory = await TaskHistory.create({
+    await TaskHistory.create({
       task: id,
       user: req.user.id,
-      action: 'deleted',
+      action: 'Deleted tasks',
     });
 
     res.status(200).json({
@@ -248,6 +248,34 @@ const deleteTask = asyncHandler(async (req, res, next) => {
   }
 });
 
+/**
+ * @desc    Mark the task as completed
+ * @route   /api/v1/tasks/:id
+ * @method  PATCH
+ * @access  Private
+ */
+
+const markAsComplete = asyncHandler(async (req, res) => {
+  try {
+    const taskId = req.params.id;
+    const updatedTask = await Task.findByIdAndUpdate(
+      taskId,
+      { isCompleted: true, status: "done", priority: "", notifications: false,
+      dueDate: "", reminderDate: ""},
+      { new: true }
+    );
+
+    if (!updatedTask) {
+      return res.status(404).json({ error: "Task not found" });
+    }
+
+    res.json(updatedTask);
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 module.exports = {
   getTasks,
   getTask,
@@ -257,4 +285,5 @@ module.exports = {
   getTasksByPriority,
   getassignedTasks,
   getTasksByStatus,
+  markAsComplete,
 };
