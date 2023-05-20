@@ -21,7 +21,7 @@ const taskSchema = mongoose.Schema(
     priority: {
       type: String,
       enum: ["low", "medium", "high"],
-      default: "medium",
+      default: "",
       index: true,
     },
     status: {
@@ -51,7 +51,7 @@ const taskSchema = mongoose.Schema(
       ref: 'Comment',
       required: false,
     }],
-    active: { type: Boolean, default: true,  index: true},
+    isCompleted: { type: Boolean, default: false,  index: true},
     dueDate: { type: Date, required: false, index: true },
     reminderDate: { type: Date ,index: true},
     notifications: { type: Boolean, default: true },
