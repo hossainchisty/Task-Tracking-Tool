@@ -1,4 +1,3 @@
-
 #### API Routers and Methods
 
 List all the API routes and HTTP methods used in the project, along with a brief description of what each endpoint does.
@@ -43,5 +42,7 @@ List all the API routes and HTTP methods used in the project, along with a brief
 - `/api/v1/users/register` - `POST`: Register new user
 
 - `/api/v1/users/login` - `POST`: Authenticate a user
+
+- `/api/v1/users/forget-password` - `POST`: Forget password functionality for users
 
 - `/api/v1/users/me` - `GET`: Get user data
