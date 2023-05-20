@@ -76,6 +76,27 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+
+/**
+ * @desc    Logs out the currently logged-in user by invalidating the JWT token.
+ * @route   /api/v1/users/logout
+ * @method  POST
+ * @access  Private
+ * @requires Logged User
+ * @returns {string} 200 OK: Returns a success message indicating successful logout.
+ */
+
+const logoutUser = asyncHandler(async (req, res) => {
+  // Update the user's token to invalidate it
+  const { user } = req;
+  user.token = '';
+
+  // Save the updated user document
+  await user.save();
+
+  res.status(200).json({ message: 'Logged out successfully' });
+});
+
 /**
  * @desc    Get user data
  * @route   /api/V1/users/me
@@ -120,6 +141,7 @@ const forgetPassword = asyncHandler(async (req, res) => {
 module.exports = {
   registerUser,
   loginUser,
+  logoutUser,
   getMe,
   forgetPassword,
 };
