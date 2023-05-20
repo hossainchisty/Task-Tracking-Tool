@@ -3,7 +3,9 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 
-// Middleware that verify user authorization
+/**
+ * @desc   Middleware that verifies user authorization
+ */
 const protect = asyncHandler(async (req, res, next) => {
   let token;
 
@@ -23,9 +25,16 @@ const protect = asyncHandler(async (req, res, next) => {
 
       next();
     } catch (error) {
-      console.log(error);
-      res.status(401);
-      throw new Error("Please authenticate");
+      if (error.name === "JsonWebTokenError" && error.message === "invalid signature") {
+        // Handle invalid signature error
+        res.status(401);
+        throw new Error("Invalid token signature");
+      } else {
+        // Handle other JWT errors
+        console.error(error);
+        res.status(401);
+        throw new Error("Please authenticate");
+      }
     }
   }
 
