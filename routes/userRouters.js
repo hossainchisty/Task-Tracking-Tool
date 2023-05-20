@@ -4,6 +4,7 @@ const router = express.Router();
 const {
   registerUser,
   loginUser,
+  logoutUser,
   getMe,
   forgetPassword,
 } = require("../controllers/userController");
@@ -22,6 +23,7 @@ const createAccountLimiter = rateLimit({
 
 // Routing Implement
 router.post("/login", loginUser);
+router.post('/logout', protect, logoutUser);
 router.get("/me", protect, getMe);
 // Apply the rate limiting middleware to API calls only
 router.post("/register", createAccountLimiter, registerUser);
