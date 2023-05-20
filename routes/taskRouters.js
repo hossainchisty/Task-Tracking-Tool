@@ -11,6 +11,7 @@ const {
   getassignedTasks,
   getTasksByPriority,
   getTasksByStatus,
+  markAsComplete,
 } = require("../controllers/taskController");
 
 const {
@@ -27,11 +28,10 @@ const { protect } = require("../middleware/authMiddleware");
 
 const {getTaskAnalytics} = require('../controllers/analyticsController')
 
-// Adding n getting tasks
+
 router.route("/").get(protect, getTasks).post(protect, addTask);
 
-// Deleting n updating tasks
-router.route("/:id").delete(protect, deleteTask).put(protect, updateTask);
+router.route("/:id").delete(protect, deleteTask).put(protect, updateTask).patch(protect, markAsComplete);
 
 // Retrive single task
 router.route("/item/:taskID").get(protect, getTask);
