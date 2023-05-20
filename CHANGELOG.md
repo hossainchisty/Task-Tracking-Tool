@@ -1,3 +1,12 @@
+# [2.27.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.26.0...v2.27.0) (2023-05-20)
+
+
+### Features
+
+* Add password reset functionality and update email content ([e48fe69](https://github.com/hossainchisty/Task-Tracking-Tool/commit/e48fe691ff039cf2889929b127568a4dfb04e23d))
+
+
+
 # [2.26.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.25.0...v2.26.0) (2023-05-20)
 
 
@@ -39,15 +48,6 @@
 ### Features
 
 * Create api-docs.md ([299a6e1](https://github.com/hossainchisty/Task-Tracking-Tool/commit/299a6e1b7c4298c79361b6edeba70139b1f7abcc))
-
-
-
-# [2.22.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.21.0...v2.22.0) (2023-05-17)
-
-
-### Features
-
-* Add API endpoint to retrieve a single task ([618b22a](https://github.com/hossainchisty/Task-Tracking-Tool/commit/618b22a64eaaf16a52b9d842aa2f29fecccca58b))
 
 
 
