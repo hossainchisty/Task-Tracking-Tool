@@ -40,7 +40,7 @@ Users can collaborate on tasks and projects by adding comments, sharing files, a
 
 Keeping a history of completed tasks can help users track their progress over time, identify patterns, and improve their productivity.
 
-## Gamification and Rewards
+### Gamification and Rewards
 
 Our application incorporates gamification elements to enhance user motivation, promote engagement, and create an enjoyable task management experience. We have implemented the following features:
 
