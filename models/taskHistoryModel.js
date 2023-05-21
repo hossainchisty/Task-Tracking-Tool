@@ -19,7 +19,7 @@ const TaskHistorySchema = mongoose.Schema(
     action: {
       type: String,
       required: true,
-      enum: ["Added tasks", "Updated tasks", "Deleted tasks", "Completed tasks", "Uncompleted tasks", "Added comments", "Updated comments", "Deleted comments"],
+      enum: ["Added tasks", "Updated tasks", "Deleted tasks", "Completed tasks", "Uncompleted tasks", "Added comments", "Updated comments", "Deleted comments", "Collaborator Added", "Collaborator Deleted"],
     },
     createdAt: {
       type: Date,
