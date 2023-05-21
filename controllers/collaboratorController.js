@@ -2,6 +2,7 @@
 const asyncHandler = require("express-async-handler");
 const Task = require("../models/taskModel");
 const User = require("../models/userModel");
+const TaskHistory = require("../models/taskHistoryModel");
 
 /**
  * @desc  Add a collaborator to a task
@@ -45,6 +46,12 @@ const addCollaborator = asyncHandler(async (req, res) => {
 
     await task.save();
     await user.save();
+
+    await TaskHistory.create({
+      task: task._id,
+      user: req.user.id,
+      action: 'Collaborator Added',
+    });
 
     res.send({ message: "Collaborator added successfully" });
   } catch (error) {
@@ -93,6 +100,11 @@ const removeCollaborator = asyncHandler(async (req, res) => {
 
     await task.save();
     await user.save();
+    await TaskHistory.create({
+      task: task._id,
+      user: req.user.id,
+      action: 'Collaborator Deleted',
+    });
 
     res.send({ message: "Collaborator removed successfully" });
   } catch (error) {
