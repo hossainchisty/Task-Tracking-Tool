@@ -1,3 +1,14 @@
+# [2.28.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.27.0...v2.28.0) (2023-05-21)
+
+
+### Features
+
+* Add and delete comments to task, update task history ([7425198](https://github.com/hossainchisty/Task-Tracking-Tool/commit/7425198b151cbf59c596d2b4805a46280748a582))
+* Add task history records when collaborator is added or removed ([396ee79](https://github.com/hossainchisty/Task-Tracking-Tool/commit/396ee7999268fe2ff3338e37e4f2c1a8b40edd4a))
+* refactor error handling & add task history on Completion. ([1b0c510](https://github.com/hossainchisty/Task-Tracking-Tool/commit/1b0c510e7e2dac1c58b55c485723256b4402a632))
+
+
+
 # [2.27.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.26.0...v2.27.0) (2023-05-20)
 
 
@@ -39,15 +50,6 @@
 ### Features
 
 * Update documentation.md ([e3ff276](https://github.com/hossainchisty/Task-Tracking-Tool/commit/e3ff27605e96631bfcd010d5f1a44534aaa4bfae))
-
-
-
-# [2.23.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.22.0...v2.23.0) (2023-05-17)
-
-
-### Features
-
-* Create api-docs.md ([299a6e1](https://github.com/hossainchisty/Task-Tracking-Tool/commit/299a6e1b7c4298c79361b6edeba70139b1f7abcc))
 
 
 
