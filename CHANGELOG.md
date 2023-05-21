@@ -1,3 +1,12 @@
+# [2.29.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.28.0...v2.29.0) (2023-05-21)
+
+
+### Features
+
+* Update task completion status, actions on completion, user points and badges ([3944dc9](https://github.com/hossainchisty/Task-Tracking-Tool/commit/3944dc9534f9303fecc1b909b6b13acb2cd84558))
+
+
+
 # [2.28.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.27.0...v2.28.0) (2023-05-21)
 
 
@@ -41,15 +50,6 @@
 * Add logoutUser controller to User API ([8dbc2f2](https://github.com/hossainchisty/Task-Tracking-Tool/commit/8dbc2f2f5d6ae2a85c731cfaf74daddb66652a8f))
 * Add PATCH API to mark a task as complete ([a96ec1f](https://github.com/hossainchisty/Task-Tracking-Tool/commit/a96ec1f2295f7fce31b7893cd31df9a97258cb05))
 * Update action enum in TaskHistorySchema ([8b63240](https://github.com/hossainchisty/Task-Tracking-Tool/commit/8b6324049e438dec2a86fd98f715d771c3cf2621))
-
-
-
-# [2.24.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.23.0...v2.24.0) (2023-05-17)
-
-
-### Features
-
-* Update documentation.md ([e3ff276](https://github.com/hossainchisty/Task-Tracking-Tool/commit/e3ff27605e96631bfcd010d5f1a44534aaa4bfae))
 
 
 
