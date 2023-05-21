@@ -1,7 +1,10 @@
 // Basic Lib Imports
 const mongoose = require("mongoose");
-const moment = require("moment-timezone");
 
+/*
+  Task Schema Definition
+  
+*/
 
 const taskSchema = mongoose.Schema(
   {
@@ -21,7 +24,7 @@ const taskSchema = mongoose.Schema(
     priority: {
       type: String,
       enum: ["low", "medium", "high"],
-      default: "",
+      required: false,
       index: true,
     },
     status: {
@@ -60,13 +63,6 @@ const taskSchema = mongoose.Schema(
   { versionKey: false }
 );
 
-taskSchema.pre("save", function (next) {
-  if (this.reminderDate) {
-    const timeZone = "Asia/Dhaka";
-    this.reminderDate = moment.tz(this.reminderDate, timeZone).format();
-  }
-  next();
-});
 
 
 module.exports = mongoose.model("Task", taskSchema);
