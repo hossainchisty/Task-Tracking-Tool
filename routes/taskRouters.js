@@ -31,7 +31,7 @@ const {getTaskAnalytics} = require('../controllers/analyticsController')
 
 router.route("/").get(protect, getTasks).post(protect, addTask);
 
-router.route("/:id").delete(protect, deleteTask).put(protect, updateTask).patch(protect, markAsComplete);
+router.route("/:id").delete(protect, deleteTask).put(protect, updateTask).post(protect, markAsComplete);
 
 // Retrive single task
 router.route("/item/:taskID").get(protect, getTask);

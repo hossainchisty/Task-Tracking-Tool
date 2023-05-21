@@ -31,6 +31,8 @@ const userSchema = mongoose.Schema(
         ref: "Task",
       },
     ],
+    points: { type: Number, default: 0 },
+    badges: [{ type: String }],
     subscription: [Subscription.schema],
   },
   { timestamps: true },
