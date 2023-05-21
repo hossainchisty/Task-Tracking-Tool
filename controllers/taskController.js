@@ -1,5 +1,6 @@
 // Basic Lib Imports
 const asyncHandler = require("express-async-handler");
+const User = require("../models/userModel");
 const Task = require("../models/taskModel");
 const scheduleCronJob = require("../service/cron");
 const TaskHistory = require("../models/taskHistoryModel");
@@ -233,7 +234,7 @@ const deleteTask = asyncHandler(async (req, res, next) => {
     }
 
     await TaskHistory.create({
-      task: id,
+      task: task.id,
       user: req.user.id,
       action: 'Deleted tasks',
     });
@@ -252,42 +253,67 @@ const deleteTask = asyncHandler(async (req, res, next) => {
 });
 
 /**
- * @desc    Mark the task as completed
+ * @desc     Update task completion status, award points, and badges
  * @route   /api/v1/tasks/:id
  * @method  PATCH
  * @access  Private
+ * @addons  We can give additional features to the task completion like when someone completes 5 tasks a day then they only get points and badges.
  */
 
 const markAsComplete = asyncHandler(async (req, res) => {
   try {
     const taskId = req.params.id;
-    const updatedTask = await Task.findByIdAndUpdate(
-      taskId,
+
+    // Check if the task exists
+    const existingTask = await Task.findOneAndUpdate(
+      { _id: taskId },
       {
-        isCompleted: true, status: "done", priority: "", notifications: false,
-        dueDate: "", reminderDate: ""
+        $set: {
+          isCompleted: true,
+          status: "done",
+          priority: "",
+          notifications: false,
+          dueDate: "",
+          reminderDate: ""
+        }
       },
-      { new: true }
+      { new: true, lean: true }
     );
 
-    if (!updatedTask) {
+    if (!existingTask) {
       return res.status(404).json({ error: "Task not found" });
     }
 
+    // Check if the task was already completed
+    if (existingTask.isCompleted) {
+      return res.status(400).json({ error: "Task already marked as completed" });
+    }
+
+    // Update action history
     await TaskHistory.create({
-      task: id,
+      task: existingTask._id,
       user: req.user.id,
-      action: 'Completed tasks',
+      action: "Completed tasks",
     });
 
-    res.json(updatedTask);
+    // Get the user who completed the task
+    const userUpdateOperations = [
+      {
+        updateOne: {
+          filter: { _id: req.user.id },
+          update: { $inc: { points: 10 }, $addToSet: { badges: "Completion Badge" } }
+        }
+      }
+    ];
+
+    await User.bulkWrite(userUpdateOperations);
+
+    res.json(existingTask);
   } catch (error) {
-    res.status(
-      error.statusCode || 500,
-      { error: error.message }
-    )
+    res.status(error.statusCode || 500).json({ error: error.message });
   }
 });
+
 
 
 module.exports = {
