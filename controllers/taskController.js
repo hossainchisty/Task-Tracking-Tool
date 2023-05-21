@@ -244,7 +244,10 @@ const deleteTask = asyncHandler(async (req, res, next) => {
       message: "Task was deleted.",
     });
   } catch (error) {
-    next(error);
+    res.status(
+      error.statusCode || 500,
+      { error: error.message }
+    )
   }
 });
 
@@ -260,8 +263,10 @@ const markAsComplete = asyncHandler(async (req, res) => {
     const taskId = req.params.id;
     const updatedTask = await Task.findByIdAndUpdate(
       taskId,
-      { isCompleted: true, status: "done", priority: "", notifications: false,
-      dueDate: "", reminderDate: ""},
+      {
+        isCompleted: true, status: "done", priority: "", notifications: false,
+        dueDate: "", reminderDate: ""
+      },
       { new: true }
     );
 
@@ -269,9 +274,18 @@ const markAsComplete = asyncHandler(async (req, res) => {
       return res.status(404).json({ error: "Task not found" });
     }
 
+    await TaskHistory.create({
+      task: id,
+      user: req.user.id,
+      action: 'Completed tasks',
+    });
+
     res.json(updatedTask);
   } catch (error) {
-    next(error);
+    res.status(
+      error.statusCode || 500,
+      { error: error.message }
+    )
   }
 });
 
