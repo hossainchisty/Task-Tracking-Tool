@@ -2,6 +2,8 @@
 const asyncHandler = require("express-async-handler");
 const Task = require("../models/taskModel");
 const Comment = require("../models/commentModel");
+const TaskHistory = require("../models/taskHistoryModel");
+
 
 /**
  * @desc   Create a comment for a task
@@ -34,7 +36,11 @@ const addComment = asyncHandler(async (req, res) => {
     await comment.save();
 
     await Task.updateOne({ _id: taskId }, { $push: { comments: comment._id } });
-
+    await TaskHistory.create({
+      task: task._id,
+      user: req.user.id,
+      action: 'Added comments',
+    });
     res.status(201).json(comment);
   } catch (error) {
     console.error(error);
@@ -43,7 +49,7 @@ const addComment = asyncHandler(async (req, res) => {
 });
 
 /**
- * @desc   Remove a collaborator from a task
+ * @desc    Remove a comment from task
  * @route   /api/v2/tasks/:taskId/comments/:commentId
  * @method  DELETE
  * @access  Private
@@ -67,6 +73,13 @@ const deleteComment = asyncHandler(async (req, res) => {
     _id: commentId,
     task: taskId,
   });
+
+  await TaskHistory.create({
+    task: task._id,
+    user: req.user.id,
+    action: 'Deleted comments',
+  });
+
   if (!comment) {
     return res
       .status(404)
