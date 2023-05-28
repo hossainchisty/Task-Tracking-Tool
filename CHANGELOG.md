@@ -1,3 +1,12 @@
+## [3.0.1](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.29.0...v3.0.1) (2023-05-28)
+
+
+### Bug Fixes
+
+* : 'next' is defined but never used. ([5bdbf8e](https://github.com/hossainchisty/Task-Tracking-Tool/commit/5bdbf8ee773f62d643b78b7a311739ea2ec211f3))
+
+
+
 # [2.29.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.28.0...v2.29.0) (2023-05-21)
 
 
@@ -38,18 +47,6 @@
 ### Features
 
 * Implement rate limitation and brute force protection for user login ([0a0c832](https://github.com/hossainchisty/Task-Tracking-Tool/commit/0a0c832737d44c672b22eb06f2e574bdd90c4dec))
-
-
-
-# [2.25.0](https://github.com/hossainchisty/Task-Tracking-Tool/compare/v2.24.0...v2.25.0) (2023-05-20)
-
-
-### Features
-
-* Add logout user functionality. ([35fe61b](https://github.com/hossainchisty/Task-Tracking-Tool/commit/35fe61b0a54c3676fcb08c9de5125f4276d99727))
-* Add logoutUser controller to User API ([8dbc2f2](https://github.com/hossainchisty/Task-Tracking-Tool/commit/8dbc2f2f5d6ae2a85c731cfaf74daddb66652a8f))
-* Add PATCH API to mark a task as complete ([a96ec1f](https://github.com/hossainchisty/Task-Tracking-Tool/commit/a96ec1f2295f7fce31b7893cd31df9a97258cb05))
-* Update action enum in TaskHistorySchema ([8b63240](https://github.com/hossainchisty/Task-Tracking-Tool/commit/8b6324049e438dec2a86fd98f715d771c3cf2621))
 
 
 
