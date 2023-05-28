@@ -2,6 +2,7 @@
 
 Task Tracking Software helps individuals and teams manage tasks, monitor progress, and collaborate. Features include task creation, assignment, prioritization, deadline setting, time tracking, and collaboration. It also offers task history, pattern identification, and gamification with task completion badges for motivation and recognition. It streamlines task management and boosts productivity.
 
+[![Build and Push Docker Image](https://github.com/hossainchisty/Task-Tracking-Tool/actions/workflows/prod-docker.yml/badge.svg?branch=master)](https://github.com/hossainchisty/Task-Tracking-Tool/actions/workflows/prod-docker.yml) [![CodeFactor](https://www.codefactor.io/repository/github/hossainchisty/task-tracking-tool/badge/master)](https://www.codefactor.io/repository/github/hossainchisty/task-tracking-tool/overview/master)  [![Release](https://github.com/hossainchisty/Task-Tracking-Tool/actions/workflows/release.yml/badge.svg)](https://github.com/hossainchisty/Task-Tracking-Tool/actions/workflows/release.yml)
 ## **Features**
 
 - User authentication and authorization
