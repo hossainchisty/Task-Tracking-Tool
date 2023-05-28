@@ -4,7 +4,6 @@ const Task = require("../models/taskModel");
 const Comment = require("../models/commentModel");
 const TaskHistory = require("../models/taskHistoryModel");
 
-
 /**
  * @desc   Create a comment for a task
  * @route  /api/v2/tasks/:taskId/comments/:userId
@@ -39,7 +38,7 @@ const addComment = asyncHandler(async (req, res) => {
     await TaskHistory.create({
       task: task._id,
       user: req.user.id,
-      action: 'Added comments',
+      action: "Added comments",
     });
     res.status(201).json(comment);
   } catch (error) {
@@ -77,16 +76,14 @@ const deleteComment = asyncHandler(async (req, res) => {
   await TaskHistory.create({
     task: task._id,
     user: req.user.id,
-    action: 'Deleted comments',
+    action: "Deleted comments",
   });
 
   if (!comment) {
-    return res
-      .status(404)
-      .send({
-        error:
-          "Comment not found. Please provide a valid comment ID for the given task.",
-      });
+    return res.status(404).send({
+      error:
+        "Comment not found. Please provide a valid comment ID for the given task.",
+    });
   }
 
   res.send({ message: "Comment deleted successfully." });

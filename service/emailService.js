@@ -17,7 +17,7 @@ const sendConfirmationEmail = async (email, reservationDetails) => {
   await transporter.sendMail({
     from: `Reservation ${process.env.FROM}`,
     to: email,
-    subject: "Reservation Confirmation", 
+    subject: "Reservation Confirmation",
     text: `Dear ${reservationDetails.full_name}, 
 
     Thank you for choosing Brasa at ${reservationDetails.branch} for your reservation on ${reservationDetails.date} at ${reservationDetails.time}.

@@ -5,7 +5,7 @@ const User = require("../models/userModel");
 const { generateToken } = require("../helper/generateToken");
 const randomString = require("randomstring");
 const { sendResetPasswordEmail } = require("../helper/sendEmail");
- 
+
 /**
  * @desc    Register new user
  * @route   /api/v1/users/register
@@ -64,7 +64,7 @@ const loginUser = asyncHandler(async (req, res) => {
   // Check for user email
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.status(200)
+    res.status(200);
     res.send({
       token: generateToken(user._id),
       message: "Logged in successfully",
@@ -74,7 +74,6 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid credentials");
   }
 });
-
 
 /**
  * @desc    Logs out the currently logged-in user by invalidating the JWT token.
@@ -88,12 +87,12 @@ const loginUser = asyncHandler(async (req, res) => {
 const logoutUser = asyncHandler(async (req, res) => {
   // Update the user's token to invalidate it
   const { user } = req;
-  user.token = '';
+  user.token = "";
 
   // Save the updated user document
   await user.save();
 
-  res.status(200).json({ message: 'Logged out successfully' });
+  res.status(200).json({ message: "Logged out successfully" });
 });
 
 /**
@@ -138,7 +137,6 @@ const forgetPassword = asyncHandler(async (req, res) => {
   }
 });
 
-
 /**
  * @desc    Handles the password reset functionality for users
  * @route   /api/v1/users/reset-password
@@ -167,10 +165,11 @@ const resetPassword = async (req, res) => {
     res.json({ message: "Password reset successful." });
   } catch (error) {
     console.error("Error resetting password:", error);
-    res.status(500).json({ message: "An error occurred while resetting the password." });
+    res
+      .status(500)
+      .json({ message: "An error occurred while resetting the password." });
   }
 };
-
 
 module.exports = {
   registerUser,

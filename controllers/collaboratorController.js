@@ -50,7 +50,7 @@ const addCollaborator = asyncHandler(async (req, res) => {
     await TaskHistory.create({
       task: task._id,
       user: req.user.id,
-      action: 'Collaborator Added',
+      action: "Collaborator Added",
     });
 
     res.send({ message: "Collaborator added successfully" });
@@ -103,7 +103,7 @@ const removeCollaborator = asyncHandler(async (req, res) => {
     await TaskHistory.create({
       task: task._id,
       user: req.user.id,
-      action: 'Collaborator Deleted',
+      action: "Collaborator Deleted",
     });
 
     res.send({ message: "Collaborator removed successfully" });

@@ -25,7 +25,10 @@ const protect = asyncHandler(async (req, res, next) => {
 
       next();
     } catch (error) {
-      if (error.name === "JsonWebTokenError" && error.message === "invalid signature") {
+      if (
+        error.name === "JsonWebTokenError" &&
+        error.message === "invalid signature"
+      ) {
         // Handle invalid signature error
         res.status(401);
         throw new Error("Invalid token signature");

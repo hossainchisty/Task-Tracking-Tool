@@ -23,4 +23,4 @@ const getTaskHistory = asyncHandler(async (req, res) => {
 
 module.exports = {
   getTaskHistory,
-};  
+};

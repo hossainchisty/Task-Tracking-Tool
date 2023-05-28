@@ -17,7 +17,7 @@ const {
 const {
   getComment,
   addComment,
-  deleteComment
+  deleteComment,
 } = require("../controllers/commentController");
 
 const {
@@ -26,12 +26,15 @@ const {
 } = require("../controllers/collaboratorController");
 const { protect } = require("../middleware/authMiddleware");
 
-const {getTaskAnalytics} = require('../controllers/analyticsController')
-
+const { getTaskAnalytics } = require("../controllers/analyticsController");
 
 router.route("/").get(protect, getTasks).post(protect, addTask);
 
-router.route("/:id").delete(protect, deleteTask).put(protect, updateTask).post(protect, markAsComplete);
+router
+  .route("/:id")
+  .delete(protect, deleteTask)
+  .put(protect, updateTask)
+  .post(protect, markAsComplete);
 
 // Retrive single task
 router.route("/item/:taskID").get(protect, getTask);
@@ -40,7 +43,6 @@ router.route("/assigned").get(protect, getassignedTasks);
 
 // Get tasks by priority
 router.route("/priority/:priority").get(protect, getTasksByPriority);
-
 
 // Get tasks by status
 router.route("/status/:status").get(protect, getTasksByStatus);
@@ -52,7 +54,9 @@ router.route("/:id/comments").get(protect, getComment);
 router.route("/:taskId/comments/").post(protect, addComment);
 
 // Removing comments
-router.route("/delete/:taskId/comments/:commentId").delete(protect, deleteComment);
+router
+  .route("/delete/:taskId/comments/:commentId")
+  .delete(protect, deleteComment);
 
 // Adding Collaborators
 router.route("/:taskId/collaborators/").post(protect, addCollaborator);

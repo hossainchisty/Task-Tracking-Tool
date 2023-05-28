@@ -1,7 +1,6 @@
 // Basic Lib Imports
 const mongoose = require("mongoose");
 
-
 const notificationSchema = new mongoose.Schema(
   {
     user: {

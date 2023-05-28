@@ -31,7 +31,6 @@ const getTasks = asyncHandler(async (req, res) => {
   res.status(200).json(tasks);
 });
 
-
 /**
  * @desc    Get a tasks
  * @route   /api/v1/tasks/item/:taskID
@@ -44,7 +43,7 @@ const getTask = asyncHandler(async (req, res) => {
   const task = await Task.findById(req.params.taskID).lean();
   // Check if the task exists
   if (!task) {
-    return res.status(404).json({ error: 'Task not found' });
+    return res.status(404).json({ error: "Task not found" });
   }
   res.status(200).json(task);
 });
@@ -165,7 +164,7 @@ const addTask = asyncHandler(async (req, res) => {
   await TaskHistory.create({
     task: task._id,
     user: req.user.id,
-    action: 'Added tasks',
+    action: "Added tasks",
   });
   res.status(200).json(task);
 });
@@ -196,7 +195,7 @@ const updateTask = asyncHandler(async (req, res) => {
   await TaskHistory.create({
     task: id,
     user: req.user.id,
-    action: 'Updated tasks',
+    action: "Updated tasks",
   });
 
   const updatedTask = await Task.findById(id);
@@ -236,7 +235,7 @@ const deleteTask = asyncHandler(async (req, res, next) => {
     await TaskHistory.create({
       task: task.id,
       user: req.user.id,
-      action: 'Deleted tasks',
+      action: "Deleted tasks",
     });
 
     res.status(200).json({
@@ -245,10 +244,7 @@ const deleteTask = asyncHandler(async (req, res, next) => {
       message: "Task was deleted.",
     });
   } catch (error) {
-    res.status(
-      error.statusCode || 500,
-      { error: error.message }
-    )
+    res.status(error.statusCode || 500, { error: error.message });
   }
 });
 
@@ -274,8 +270,8 @@ const markAsComplete = asyncHandler(async (req, res) => {
           priority: "",
           notifications: false,
           dueDate: "",
-          reminderDate: ""
-        }
+          reminderDate: "",
+        },
       },
       { new: true, lean: true }
     );
@@ -286,7 +282,9 @@ const markAsComplete = asyncHandler(async (req, res) => {
 
     // Check if the task was already completed
     if (existingTask.isCompleted) {
-      return res.status(400).json({ error: "Task already marked as completed" });
+      return res
+        .status(400)
+        .json({ error: "Task already marked as completed" });
     }
 
     // Update action history
@@ -301,9 +299,12 @@ const markAsComplete = asyncHandler(async (req, res) => {
       {
         updateOne: {
           filter: { _id: req.user.id },
-          update: { $inc: { points: 10 }, $addToSet: { badges: "Completion Badge" } }
-        }
-      }
+          update: {
+            $inc: { points: 10 },
+            $addToSet: { badges: "Completion Badge" },
+          },
+        },
+      },
     ];
 
     await User.bulkWrite(userUpdateOperations);
@@ -313,8 +314,6 @@ const markAsComplete = asyncHandler(async (req, res) => {
     res.status(error.statusCode || 500).json({ error: error.message });
   }
 });
-
-
 
 module.exports = {
   getTasks,

@@ -44,25 +44,27 @@ const taskSchema = mongoose.Schema(
       required: false,
       index: true,
     },
-    collaborators: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: false,
-    }],
-    comments: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Comment',
-      required: false,
-    }],
-    isCompleted: { type: Boolean, default: false,  index: true},
+    collaborators: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: false,
+      },
+    ],
+    comments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Comment",
+        required: false,
+      },
+    ],
+    isCompleted: { type: Boolean, default: false, index: true },
     dueDate: { type: Date, required: false, index: true },
-    reminderDate: { type: Date ,index: true},
+    reminderDate: { type: Date, index: true },
     notifications: { type: Boolean, default: true },
   },
   { timestamps: true },
   { versionKey: false }
 );
-
-
 
 module.exports = mongoose.model("Task", taskSchema);

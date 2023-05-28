@@ -25,8 +25,12 @@ const getTaskAnalytics = asyncHandler(async (req, res) => {
   });
   const userId = req.user.id;
   const totalTasks = await Task.countDocuments({ user: userId });
-  const taskCompleted = await Task.countDocuments({ user: userId, status: 'done' , isCompleted: true });
-  const completionRate = Math.round((taskCompleted / totalTasks) * 100)
+  const taskCompleted = await Task.countDocuments({
+    user: userId,
+    status: "done",
+    isCompleted: true,
+  });
+  const completionRate = Math.round((taskCompleted / totalTasks) * 100);
 
   const taskAnalytics = {
     incompleteTasks,

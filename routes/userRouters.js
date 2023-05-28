@@ -1,7 +1,7 @@
 // Basic Lib Imports
 const express = require("express");
 
-const ExpressBrute = require('express-brute');
+const ExpressBrute = require("express-brute");
 
 var store = new ExpressBrute.MemoryStore();
 // stores state locally, don't use this in production
@@ -32,7 +32,7 @@ const createAccountLimiter = rateLimit({
 
 // Routing Implement
 router.post("/login", bruteforce.prevent, loginUser);
-router.post('/logout', protect, logoutUser);
+router.post("/logout", protect, logoutUser);
 router.get("/me", protect, getMe);
 // Apply the rate limiting middleware to API calls only
 router.post("/register", createAccountLimiter, registerUser);
