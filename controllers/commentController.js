@@ -22,7 +22,11 @@ const addComment = asyncHandler(async (req, res) => {
   try {
     const task = await Task.findById({ _id: taskId }).lean();
     if (!task) {
-      return res.status(404).send({ error: "Task not found" });
+      return res.status(404).json({
+        status: 404,
+        error: "Not Found",
+        message: "Task not found.",
+      });
     }
 
     // Create a new Comment object with the comment text, user ID, and task ID
@@ -42,8 +46,11 @@ const addComment = asyncHandler(async (req, res) => {
     });
     res.status(201).json(comment);
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Server error" });
+    res.status(500).json({
+      status: 500,
+      error: error.message,
+      message: "An error occurred while processing the request.",
+    });
   }
 });
 
@@ -63,9 +70,11 @@ const deleteComment = asyncHandler(async (req, res) => {
 
   const task = await Task.findById(taskId);
   if (!task) {
-    return res
-      .status(404)
-      .send({ error: "Task not found. Please provide a valid task ID." });
+    return res.status(404).json({
+      status: 404,
+      error: "Not Found",
+      message: "Task not found.",
+    });
   }
 
   const comment = await Comment.findOneAndDelete({
@@ -80,13 +89,17 @@ const deleteComment = asyncHandler(async (req, res) => {
   });
 
   if (!comment) {
-    return res.status(404).send({
-      error:
+    return res.status(404).json({
+      status: 404,
+      message:
         "Comment not found. Please provide a valid comment ID for the given task.",
     });
   }
 
-  res.send({ message: "Comment deleted successfully." });
+  res.status(200).json({
+    status: 200,
+    message: "Comment deleted successfully."
+  });
 });
 
 /**
@@ -107,15 +120,22 @@ const getComment = asyncHandler(async (req, res) => {
     const task = await Task.findOne({ _id: taskId, collaborators: userId });
 
     if (!task) {
-      return res.status(404).send({ error: "Task not found" });
+      return res.status(404).json({
+        status: 404,
+        error: "Not Found",
+        message: "Task not found.",
+      });
     }
 
     const comments = await Comment.find({ task: taskId }).populate("author");
 
     res.send(comments);
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Server error" });
+    res.status(500).json({
+      status: 500,
+      error: error.message,
+      message: "An error occurred while processing the request.",
+    });
   }
 });
 
