@@ -11,6 +11,11 @@ Task Tracking Software helps individuals and teams manage tasks, monitor progres
 - Notification system
 - Reporting and analytics
 - Collaboration features
+- Designed and implemented RESTful APIs adhering to best practices, enhancing performance and maintainability.
+- Ensured API security by implementing token-based authentication and rate limiting.
+- Utilized versioning and proper HTTP status codes to enhance API usability and user experience.
+- Followed REST API best practices, including resource naming, proper HTTP methods, and error handling.
+- Documented the API endpoints using tools like Postman for enhanced developer onboarding.
 
 ### **User Authentication and Authorization**
 
