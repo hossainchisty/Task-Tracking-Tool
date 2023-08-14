@@ -32,9 +32,9 @@ const getTasks = asyncHandler(async (req, res) => {
     status: "success",
     code: 200,
     data: {
-        tasks,
+      tasks,
     },
-});
+  });
 });
 
 /**
@@ -47,23 +47,22 @@ const getTasks = asyncHandler(async (req, res) => {
 
 const getTask = asyncHandler(async (req, res) => {
   const task = await Task.findById(req.params.taskID).lean();
-  
+
   if (!task) {
     return res.status(404).json({
-      status: 'forbidden',
+      status: "forbidden",
       code: 404,
       error: "Not Found",
       message: "Task not found.",
     });
   }
-  
+
   return res.status(200).json({
-    status: 'success',
+    status: "success",
     code: 200,
     data: task,
   });
 });
-
 
 /**
  * @desc    Find tasks based on priority
@@ -78,7 +77,7 @@ const getTasksByPriority = asyncHandler(async (req, res) => {
   // Validate priority
   if (priority !== "low" && priority !== "medium" && priority !== "high") {
     return res.status(400).json({
-      status: 'failed',
+      status: "failed",
       code: 400,
       error: "Bad Request",
       message: "Invalid priority value.",
@@ -90,20 +89,20 @@ const getTasksByPriority = asyncHandler(async (req, res) => {
 
     if (tasks.length === 0) {
       return res.status(204).json({
-        status: '404 Not Found',
+        status: "404 Not Found",
         code: 404,
         message: "No tasks found with the specified priority.",
       });
     }
 
     res.status(200).json({
-      status: 'success',
+      status: "success",
       code: 200,
       data: tasks,
     });
   } catch (error) {
     res.status(500).json({
-      status: 'failed',
+      status: "failed",
       code: 500,
       error: "Internal Server Error",
       message: "An error occurred while processing the request.",
@@ -127,7 +126,8 @@ const getTasksByStatus = asyncHandler(async (req, res) => {
     return res.status(400).json({
       status: 400,
       error: "Bad Request",
-      message: "Invalid status value. Allowed values: 'todo', 'in-progress', 'done'."
+      message:
+        "Invalid status value. Allowed values: 'todo', 'in-progress', 'done'.",
     });
   }
 
@@ -137,7 +137,7 @@ const getTasksByStatus = asyncHandler(async (req, res) => {
       return res.status(404).json({
         status: 404,
         error: "Not Found",
-        message: "No tasks found with the provided status."
+        message: "No tasks found with the provided status.",
       });
     }
     res.status(200).json(tasks);
@@ -145,11 +145,10 @@ const getTasksByStatus = asyncHandler(async (req, res) => {
     res.status(500).json({
       status: 500,
       error: "Internal Server Error",
-      message: "An error occurred while processing the request."
+      message: "An error occurred while processing the request.",
     });
   }
 });
-
 
 /**
  * @desc    Get all assigned tasks for a user that are due today or overdue
@@ -201,13 +200,13 @@ const addTask = asyncHandler(async (req, res) => {
     // Check for required title field
     if (!title) {
       return res.status(400).json({
-        status: 'Bad Request',
+        status: "Bad Request",
         code: 400,
-        message: 'Validation error',
+        message: "Validation error",
         errors: [
           {
-            field: 'title',
-            message: 'Title field is required',
+            field: "title",
+            message: "Title field is required",
           },
         ],
       });
@@ -234,7 +233,7 @@ const addTask = asyncHandler(async (req, res) => {
     const taskHistoryData = {
       task: task._id,
       user: req.user.id,
-      action: 'Added tasks',
+      action: "Added tasks",
     };
     await TaskHistory.create(taskHistoryData);
 
@@ -242,7 +241,7 @@ const addTask = asyncHandler(async (req, res) => {
     res.status(200).json(task);
   } catch (error) {
     res.status(500).json({
-      status: 'Internal Server Error',
+      status: "Internal Server Error",
       code: 500,
       message: error.message,
     });
@@ -274,7 +273,8 @@ const updateTask = asyncHandler(async (req, res) => {
       return res.status(403).json({
         status: "error",
         code: 403,
-        message: "Unauthorized - User does not have permission to update this task",
+        message:
+          "Unauthorized - User does not have permission to update this task",
       });
     }
 
@@ -318,7 +318,7 @@ const deleteTask = asyncHandler(async (req, res, next) => {
 
     if (task.user.toString() !== req.user.id) {
       res.status(401).json({
-        status: 'failed',
+        status: "failed",
         code: 401,
         error: "Unauthorized",
         message: "User is authenticated but not authorized",
@@ -335,7 +335,7 @@ const deleteTask = asyncHandler(async (req, res, next) => {
         status: "failed",
         code: 404,
         message: "Task not found",
-      }); 
+      });
     }
 
     await TaskHistory.create({
@@ -353,7 +353,6 @@ const deleteTask = asyncHandler(async (req, res, next) => {
     res.status(error.statusCode || 500).json({ error: error.message });
   }
 });
-
 
 /**
  * @desc     Update task completion status, award points, and badges
@@ -388,18 +387,16 @@ const markAsComplete = asyncHandler(async (req, res) => {
         status: "failed",
         code: 404,
         message: "Task not found",
-      }); 
+      });
     }
 
     // Check if the task was already completed
     if (existingTask.isCompleted) {
-      return res
-        .status(400)
-        .json({
-          status: 'failed',
-          code: 400,
-          message: "Task already marked as completed" 
-        });
+      return res.status(400).json({
+        status: "failed",
+        code: 400,
+        message: "Task already marked as completed",
+      });
     }
 
     // Update action history
