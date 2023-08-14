@@ -37,7 +37,7 @@ const TaskHistorySchema = mongoose.Schema(
       default: Date.now,
     },
   },
-  { versionKey: false }
+  { versionKey: false },
 );
 
 module.exports = mongoose.model("TaskHistory", TaskHistorySchema);

@@ -14,7 +14,7 @@ const scheduleCronJob = (title) => {
     {
       timeZone: "Asia/Dhaka",
       scheduled: true,
-    }
+    },
   );
 
   isCronJobScheduled = true;

@@ -18,7 +18,7 @@ const OTP = new Schema(
     },
   },
   { timestamps: true },
-  { versionKey: false }
+  { versionKey: false },
 );
 
 module.exports = mongoose.model("OTP", OTP);

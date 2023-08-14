@@ -92,10 +92,10 @@ const removeCollaborator = asyncHandler(async (req, res) => {
     }
 
     task.collaborators = task.collaborators.filter(
-      (collaboratorId) => collaboratorId.toString() !== userId
+      (collaboratorId) => collaboratorId.toString() !== userId,
     );
     user.collaboratingTasks = user.collaboratingTasks.filter(
-      (collaboratingTaskId) => collaboratingTaskId.toString() !== taskId
+      (collaboratingTaskId) => collaboratingTaskId.toString() !== taskId,
     );
 
     await task.save();
