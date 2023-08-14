@@ -40,18 +40,16 @@ const addCollaborator = asyncHandler(async (req, res) => {
     if (task.user.toString() !== req.user._id.toString()) {
       return res.status(401).json({
         status: 401,
-        error: 'Unauthorized',
+        error: "Unauthorized",
         message: "You are not authorized to add collaborators to this task",
       });
     }
 
     if (task.collaborators.includes(user._id)) {
-      return res
-        .status(409)
-        .json({
-          status: 409,
-          message: "User is already a collaborator on this task"
-        });
+      return res.status(409).json({
+        status: 409,
+        message: "User is already a collaborator on this task",
+      });
     }
 
     task.collaborators.push(user._id);
@@ -68,7 +66,7 @@ const addCollaborator = asyncHandler(async (req, res) => {
 
     res.status(200).json({
       status: 200,
-      message: "Collaborator added successfully"
+      message: "Collaborator added successfully",
     });
   } catch (error) {
     res.status(500).json({
@@ -115,7 +113,8 @@ const removeCollaborator = asyncHandler(async (req, res) => {
     if (task.user.toString() !== req.user._id.toString()) {
       return res.status(403).send({
         status: 403,
-        message: "You are not authorized to remove collaborators from this task",
+        message:
+          "You are not authorized to remove collaborators from this task",
       });
     }
 
@@ -136,7 +135,7 @@ const removeCollaborator = asyncHandler(async (req, res) => {
 
     res.status(200).json({
       status: 200,
-      message: "Collaborator removed successfully"
+      message: "Collaborator removed successfully",
     });
   } catch (error) {
     res.status(500).json({
