@@ -80,14 +80,14 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (user) {
     res.status(201).json({
-      status: "success",
-      code: 201,
+      status: 201,
       data: {
         _id: user.id,
         full_name: user.full_name,
         email: user.email,
         token: generateToken(user._id),
       },
+      message: "User created successfully.",
     });
   } else {
     res.status(400).json({
