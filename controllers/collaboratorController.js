@@ -22,23 +22,36 @@ const addCollaborator = asyncHandler(async (req, res) => {
     const user = await User.findOne({ email });
 
     if (!task) {
-      return res.status(404).send({ error: "Task not found" });
+      return res.status(404).json({
+        status: 404,
+        error: "Not Found",
+        message: "Task not found.",
+      });
     }
 
     if (!user) {
-      return res.status(404).send({ error: "User not found" });
+      return res.status(404).json({
+        status: 404,
+        error: "Not Found",
+        message: "User not found.",
+      });
     }
 
     if (task.user.toString() !== req.user._id.toString()) {
-      return res.status(403).send({
-        error: "You are not authorized to add collaborators to this task",
+      return res.status(401).json({
+        status: 401,
+        error: 'Unauthorized',
+        message: "You are not authorized to add collaborators to this task",
       });
     }
 
     if (task.collaborators.includes(user._id)) {
       return res
-        .status(400)
-        .send({ error: "User is already a collaborator on this task" });
+        .status(409)
+        .json({
+          status: 409,
+          message: "User is already a collaborator on this task"
+        });
     }
 
     task.collaborators.push(user._id);
@@ -53,10 +66,16 @@ const addCollaborator = asyncHandler(async (req, res) => {
       action: "Collaborator Added",
     });
 
-    res.send({ message: "Collaborator added successfully" });
+    res.status(200).json({
+      status: 200,
+      message: "Collaborator added successfully"
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Server error" });
+    res.status(500).json({
+      status: 500,
+      error: error.message,
+      message: "An error occurred while processing the request.",
+    });
   }
 });
 
@@ -78,16 +97,25 @@ const removeCollaborator = asyncHandler(async (req, res) => {
     const user = await User.findById(userId);
 
     if (!task) {
-      return res.status(404).send({ error: "Task not found" });
+      return res.status(404).json({
+        status: 404,
+        error: "Not Found",
+        message: "Task not found.",
+      });
     }
 
     if (!user) {
-      return res.status(404).send({ error: "User not found" });
+      return res.status(404).json({
+        status: 404,
+        error: "Not Found",
+        message: "User not found.",
+      });
     }
 
     if (task.user.toString() !== req.user._id.toString()) {
       return res.status(403).send({
-        error: "You are not authorized to remove collaborators from this task",
+        status: 403,
+        message: "You are not authorized to remove collaborators from this task",
       });
     }
 
@@ -106,10 +134,16 @@ const removeCollaborator = asyncHandler(async (req, res) => {
       action: "Collaborator Deleted",
     });
 
-    res.send({ message: "Collaborator removed successfully" });
+    res.status(200).json({
+      status: 200,
+      message: "Collaborator removed successfully"
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Server error" });
+    res.status(500).json({
+      status: 500,
+      error: error.message,
+      message: "An error occurred while processing the request.",
+    });
   }
 });
 
