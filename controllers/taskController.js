@@ -28,7 +28,13 @@ const getTasks = asyncHandler(async (req, res) => {
     }
   });
 
-  res.status(200).json(tasks);
+  res.status(200).json({
+    status: "success",
+    code: 200,
+    data: {
+        tasks,
+    },
+});
 });
 
 /**
@@ -41,12 +47,23 @@ const getTasks = asyncHandler(async (req, res) => {
 
 const getTask = asyncHandler(async (req, res) => {
   const task = await Task.findById(req.params.taskID).lean();
-  // Check if the task exists
+  
   if (!task) {
-    return res.status(404).json({ error: "Task not found" });
+    return res.status(404).json({
+      status: 'forbidden',
+      code: 404,
+      error: "Not Found",
+      message: "Task not found.",
+    });
   }
-  res.status(200).json(task);
+  
+  return res.status(200).json({
+    status: 'success',
+    code: 200,
+    data: task,
+  });
 });
+
 
 /**
  * @desc    Find tasks based on priority
@@ -60,16 +77,37 @@ const getTasksByPriority = asyncHandler(async (req, res) => {
 
   // Validate priority
   if (priority !== "low" && priority !== "medium" && priority !== "high") {
-    return res.status(400).send({ error: "Invalid priority" });
+    return res.status(400).json({
+      status: 'failed',
+      code: 400,
+      error: "Bad Request",
+      message: "Invalid priority value.",
+    });
   }
 
   try {
     const tasks = await Task.find({ user: req.user.id, priority: priority });
 
-    res.status(200).json(tasks);
+    if (tasks.length === 0) {
+      return res.status(204).json({
+        status: '404 Not Found',
+        code: 404,
+        message: "No tasks found with the specified priority.",
+      });
+    }
+
+    res.status(200).json({
+      status: 'success',
+      code: 200,
+      data: tasks,
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Server error" });
+    res.status(500).json({
+      status: 'failed',
+      code: 500,
+      error: "Internal Server Error",
+      message: "An error occurred while processing the request.",
+    });
   }
 });
 
@@ -84,18 +122,34 @@ const getTasksByStatus = asyncHandler(async (req, res) => {
   const status = req.params.status;
 
   // Validate status
-  if (status !== "todo" && status !== "in-progress" && status !== "done") {
-    return res.status(400).send({ error: "Invalid status" });
+  const validStatuses = ["todo", "in-progress", "done"];
+  if (!validStatuses.includes(status)) {
+    return res.status(400).json({
+      status: 400,
+      error: "Bad Request",
+      message: "Invalid status value. Allowed values: 'todo', 'in-progress', 'done'."
+    });
   }
 
   try {
     const tasks = await Task.find({ user: req.user.id, status: status });
+    if (tasks.length === 0) {
+      return res.status(404).json({
+        status: 404,
+        error: "Not Found",
+        message: "No tasks found with the provided status."
+      });
+    }
     res.status(200).json(tasks);
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: "Server error" });
+    res.status(500).json({
+      status: 500,
+      error: "Internal Server Error",
+      message: "An error occurred while processing the request."
+    });
   }
 });
+
 
 /**
  * @desc    Get all assigned tasks for a user that are due today or overdue
@@ -129,44 +183,70 @@ const getassignedTasks = asyncHandler(async (req, res) => {
  */
 
 const addTask = asyncHandler(async (req, res) => {
-  const {
-    title,
-    description,
-    priority,
-    status,
-    labels,
-    assignedTo,
-    dueDate,
-    reminderDate,
-    collaborators,
-    comments,
-  } = req.body;
+  try {
+    // Destructure request body
+    const {
+      title,
+      description,
+      priority,
+      status,
+      labels,
+      assignedTo,
+      dueDate,
+      reminderDate,
+      collaborators,
+      comments,
+    } = req.body;
 
-  if (!req.body.title) {
-    res.status(400);
-    throw new Error("Please add task title.");
+    // Check for required title field
+    if (!title) {
+      return res.status(400).json({
+        status: 'Bad Request',
+        code: 400,
+        message: 'Validation error',
+        errors: [
+          {
+            field: 'title',
+            message: 'Title field is required',
+          },
+        ],
+      });
+    }
+
+    // Create a new task
+    const taskData = {
+      user: req.user.id,
+      title,
+      description,
+      priority,
+      status,
+      labels,
+      assignedTo,
+      dueDate,
+      reminderDate,
+      collaborators,
+      comments,
+    };
+
+    const task = await Task.create(taskData);
+
+    // Log task addition in history
+    const taskHistoryData = {
+      task: task._id,
+      user: req.user.id,
+      action: 'Added tasks',
+    };
+    await TaskHistory.create(taskHistoryData);
+
+    // Send the created task in the response
+    res.status(200).json(task);
+  } catch (error) {
+    res.status(500).json({
+      status: 'Internal Server Error',
+      code: 500,
+      message: error.message,
+    });
   }
-
-  const task = await Task.create({
-    user: req.user.id,
-    title,
-    description,
-    priority,
-    status,
-    labels,
-    assignedTo,
-    dueDate,
-    reminderDate,
-    collaborators,
-    comments,
-  });
-
-  await TaskHistory.create({
-    task: task._id,
-    user: req.user.id,
-    action: "Added tasks",
-  });
-  res.status(200).json(task);
 });
 
 /**
@@ -179,27 +259,46 @@ const updateTask = asyncHandler(async (req, res) => {
   const { id } = req.params;
   const { id: userId } = req.user;
 
-  const task = await Task.findById(id).lean();
-  if (!task) {
-    res.status(400);
-    throw new Error("Goal not found");
+  try {
+    const task = await Task.findById(id).lean();
+    if (!task) {
+      return res.status(404).json({
+        status: "error",
+        code: 404,
+        message: "Task not found",
+      });
+    }
+
+    // Make sure the logged-in user matches the task user
+    if (task.user.toString() !== userId) {
+      return res.status(403).json({
+        status: "error",
+        code: 403,
+        message: "Unauthorized - User does not have permission to update this task",
+      });
+    }
+
+    await Task.updateOne({ _id: id, user: userId }, req.body);
+    await TaskHistory.create({
+      task: id,
+      user: req.user.id,
+      action: "Updated task",
+    });
+
+    const updatedTask = await Task.findById(id);
+    res.status(200).json({
+      status: "success",
+      code: 200,
+      message: "Task updated successfully",
+      data: updatedTask,
+    });
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      code: 500,
+      message: "An error occurred while updating the task",
+    });
   }
-
-  // Make sure the logged in user matches the task user
-  if (task.user.toString() !== userId) {
-    res.status(401);
-    throw new Error("User not authorized");
-  }
-
-  await Task.updateOne({ _id: id, user: userId }, req.body);
-  await TaskHistory.create({
-    task: id,
-    user: req.user.id,
-    action: "Updated tasks",
-  });
-
-  const updatedTask = await Task.findById(id);
-  res.status(200).json(updatedTask);
 });
 
 /**
@@ -214,13 +313,17 @@ const deleteTask = asyncHandler(async (req, res, next) => {
 
     if (!req.user) {
       res.status(401);
-      throw new Error("User not found");
+      throw new Error("User not authenticated");
     }
 
-    // Make sure the logged in user matches the task user
     if (task.user.toString() !== req.user.id) {
-      res.status(401);
-      throw new Error("User not authorized");
+      res.status(401).json({
+        status: 'failed',
+        code: 401,
+        error: "Unauthorized",
+        message: "User is authenticated but not authorized",
+        suggestion: "Please provide a valid authentication information.",
+      });
     }
 
     const deletedTask = await Task.findByIdAndRemove(req.params.id, req.body, {
@@ -228,8 +331,11 @@ const deleteTask = asyncHandler(async (req, res, next) => {
     });
 
     if (!deletedTask) {
-      res.status(400);
-      throw new Error("Task not found");
+      res.status(404).json({
+        status: "failed",
+        code: 404,
+        message: "Task not found",
+      }); 
     }
 
     await TaskHistory.create({
@@ -244,9 +350,10 @@ const deleteTask = asyncHandler(async (req, res, next) => {
       message: "Task was deleted.",
     });
   } catch (error) {
-    res.status(error.statusCode || 500, { error: error.message });
+    res.status(error.statusCode || 500).json({ error: error.message });
   }
 });
+
 
 /**
  * @desc     Update task completion status, award points, and badges
@@ -277,14 +384,22 @@ const markAsComplete = asyncHandler(async (req, res) => {
     );
 
     if (!existingTask) {
-      return res.status(404).json({ error: "Task not found" });
+      return res.status(404).json({
+        status: "failed",
+        code: 404,
+        message: "Task not found",
+      }); 
     }
 
     // Check if the task was already completed
     if (existingTask.isCompleted) {
       return res
         .status(400)
-        .json({ error: "Task already marked as completed" });
+        .json({
+          status: 'failed',
+          code: 400,
+          message: "Task already marked as completed" 
+        });
     }
 
     // Update action history
