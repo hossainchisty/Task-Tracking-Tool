@@ -15,16 +15,54 @@ const { sendResetPasswordEmail } = require("../helper/sendEmail");
 
 const registerUser = asyncHandler(async (req, res) => {
   const { full_name, email, password } = req.body;
-  if (!full_name || !email || !password) {
-    res.status(400);
-    throw new Error("Please add all fields.");
+
+  if (!full_name) {
+    return res.status(400).json({
+      status: 400,
+      message: "Validation error",
+      errors: [
+        {
+          field: "full_name",
+          message: "Full name field is required",
+        },
+      ],
+    });
+  }
+
+  if (!email) {
+    return res.status(400).json({
+      status: 400,
+      message: "Validation error",
+      errors: [
+        {
+          field: "email",
+          message: "Email field is required",
+        },
+      ],
+    });
+  }
+
+  if (!password) {
+    return res.status(400).json({
+      status: 400,
+      message: "Validation error",
+      errors: [
+        {
+          field: "password",
+          message: "Password field is required",
+        },
+      ],
+    });
   }
 
   // Check if user exists
   const userExists = await User.findOne({ email });
   if (userExists) {
-    res.status(400);
-    throw new Error("User already exists");
+    return res.status(409).json({
+      status: 409,
+      error: "User already exists",
+      message: "A user with the provided information already exists in the system.",
+    });
   }
 
   // Hash password
@@ -41,14 +79,21 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (user) {
     res.status(201).json({
-      _id: user.id,
-      full_name: user.full_name,
-      email: user.email,
-      token: generateToken(user._id),
+      status: "success",
+      code: 201,
+      data: {
+        _id: user.id,
+        full_name: user.full_name,
+        email: user.email,
+        token: generateToken(user._id),
+      }
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid user data");
+    res.status(400).json({
+      status: 400,
+      error: "Bad Request",
+      message: "User with the provided data unprocessable.",
+    });
   }
 });
 
@@ -64,14 +109,20 @@ const loginUser = asyncHandler(async (req, res) => {
   // Check for user email
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
-    res.status(200);
-    res.send({
-      token: generateToken(user._id),
+    res.status(200).json({
+      status: "success",
+      code: 200,
+      data: {
+        token: generateToken(user._id),
+      },
       message: "Logged in successfully",
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid credentials");
+    res.status(400).json({
+      status: 400,
+      error: "Bad Request",
+      message: "Invalid credentials",
+    });
   }
 });
 
@@ -92,7 +143,13 @@ const logoutUser = asyncHandler(async (req, res) => {
   // Save the updated user document
   await user.save();
 
-  res.status(200).json({ message: "Logged out successfully" });
+  res.status(200).json(
+    {
+      status: "success",
+      code: 200,
+      message: "Logged out successfully"
+    }
+  );
 });
 
 /**
@@ -116,8 +173,16 @@ const getMe = asyncHandler(async (req, res) => {
 const forgetPassword = asyncHandler(async (req, res) => {
   const { email } = req.body;
   if (!email) {
-    res.status(400).json({ message: "Please fill up the email field." });
-    return;
+    return res.status(400).json({
+      status: 400,
+      message: "Validation error",
+      errors: [
+        {
+          field: "email",
+          message: "Email field is required",
+        },
+      ],
+    });
   }
 
   // Generate random token
@@ -131,9 +196,20 @@ const forgetPassword = asyncHandler(async (req, res) => {
     // Print reset password email details in console
     await sendResetPasswordEmail(email, generateToken);
 
-    res.status(200).json({ message: "Link has been sent to your email!" });
+    res.status(200).json({
+      status: 'success',
+      code: 200,
+      message: "Link has been sent to your email!"
+    });
   } else {
-    res.status(400).json({ message: "Email doesn't exist!" });
+    res.status(400).json(
+      {
+        status: 400,
+        error: "Bad Request",
+        message: "Email not found",
+        details: "The provided email address does not exist in our records."
+      }
+    );
   }
 });
 
@@ -153,7 +229,12 @@ const resetPassword = async (req, res) => {
     // Validate the token and find the user
     const user = await User.findOne({ token });
     if (!user) {
-      res.status(400).json({ message: "Invalid or expired token." });
+      res.status(401).json({
+        status: 401,
+        error: "Unauthorized",
+        message: "Invalid or expired token.",
+        suggestion: "Please provide a valid authentication token."
+      });
       return;
     }
 
@@ -162,12 +243,19 @@ const resetPassword = async (req, res) => {
     user.token = null; // Remove the token after password reset
     await user.save();
 
-    res.json({ message: "Password reset successful." });
+    res.status(200).json({
+      success: true,
+      message: "Password reset successful.",
+    });
+
   } catch (error) {
-    console.error("Error resetting password:", error);
-    res
-      .status(500)
-      .json({ message: "An error occurred while resetting the password." });
+    res.status(500).json({
+      status: "error",
+      code: 500,
+      message: "An error occurred while resetting the password.",
+      error: error
+    });
+
   }
 };
 
