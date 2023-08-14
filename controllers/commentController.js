@@ -98,7 +98,7 @@ const deleteComment = asyncHandler(async (req, res) => {
 
   res.status(200).json({
     status: 200,
-    message: "Comment deleted successfully."
+    message: "Comment deleted successfully.",
   });
 });
 
