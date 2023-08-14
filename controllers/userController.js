@@ -249,7 +249,7 @@ const resetPassword = async (req, res) => {
       status: "error",
       code: 500,
       message: "An error occurred while resetting the password.",
-      error: error,
+      error: error.message,
     });
   }
 };
