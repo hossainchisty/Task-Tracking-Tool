@@ -61,7 +61,8 @@ const registerUser = asyncHandler(async (req, res) => {
     return res.status(409).json({
       status: 409,
       error: "User already exists",
-      message: "A user with the provided information already exists in the system.",
+      message:
+        "A user with the provided information already exists in the system.",
     });
   }
 
@@ -86,7 +87,7 @@ const registerUser = asyncHandler(async (req, res) => {
         full_name: user.full_name,
         email: user.email,
         token: generateToken(user._id),
-      }
+      },
     });
   } else {
     res.status(400).json({
@@ -143,13 +144,11 @@ const logoutUser = asyncHandler(async (req, res) => {
   // Save the updated user document
   await user.save();
 
-  res.status(200).json(
-    {
-      status: "success",
-      code: 200,
-      message: "Logged out successfully"
-    }
-  );
+  res.status(200).json({
+    status: "success",
+    code: 200,
+    message: "Logged out successfully",
+  });
 });
 
 /**
@@ -197,19 +196,17 @@ const forgetPassword = asyncHandler(async (req, res) => {
     await sendResetPasswordEmail(email, generateToken);
 
     res.status(200).json({
-      status: 'success',
+      status: "success",
       code: 200,
-      message: "Link has been sent to your email!"
+      message: "Link has been sent to your email!",
     });
   } else {
-    res.status(400).json(
-      {
-        status: 400,
-        error: "Bad Request",
-        message: "Email not found",
-        details: "The provided email address does not exist in our records."
-      }
-    );
+    res.status(400).json({
+      status: 400,
+      error: "Bad Request",
+      message: "Email not found",
+      details: "The provided email address does not exist in our records.",
+    });
   }
 });
 
@@ -233,7 +230,7 @@ const resetPassword = async (req, res) => {
         status: 401,
         error: "Unauthorized",
         message: "Invalid or expired token.",
-        suggestion: "Please provide a valid authentication token."
+        suggestion: "Please provide a valid authentication token.",
       });
       return;
     }
@@ -247,15 +244,13 @@ const resetPassword = async (req, res) => {
       success: true,
       message: "Password reset successful.",
     });
-
   } catch (error) {
     res.status(500).json({
       status: "error",
       code: 500,
       message: "An error occurred while resetting the password.",
-      error: error
+      error: error,
     });
-
   }
 };
 

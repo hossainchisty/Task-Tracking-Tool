@@ -64,7 +64,7 @@ const taskSchema = mongoose.Schema(
     notifications: { type: Boolean, default: true },
   },
   { timestamps: true },
-  { versionKey: false }
+  { versionKey: false },
 );
 
 module.exports = mongoose.model("Task", taskSchema);

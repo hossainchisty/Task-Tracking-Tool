@@ -273,7 +273,7 @@ const markAsComplete = asyncHandler(async (req, res) => {
           reminderDate: "",
         },
       },
-      { new: true, lean: true }
+      { new: true, lean: true },
     );
 
     if (!existingTask) {

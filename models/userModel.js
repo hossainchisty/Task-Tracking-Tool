@@ -36,7 +36,7 @@ const userSchema = mongoose.Schema(
     subscription: [Subscription.schema],
   },
   { timestamps: true },
-  { versionKey: false }
+  { versionKey: false },
 );
 
 module.exports = mongoose.model("User", userSchema);

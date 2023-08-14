@@ -56,7 +56,7 @@ const subscriptionSchema = mongoose.Schema(
       required: false,
     },
   },
-  { versionKey: false }
+  { versionKey: false },
 );
 
 const Subscription = mongoose.model("Subscription", subscriptionSchema);
