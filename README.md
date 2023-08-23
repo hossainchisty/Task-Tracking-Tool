@@ -69,7 +69,7 @@ This feature allows users to track their activity on the platform, including the
 
 ## **Documentation**
 
-Visit [API docs](./docs/documentation.md) for full API documentation.
+Visit [API docs](https://documenter.getpostman.com/view/19574016/2s93m33icJ) for full API documentation.
 
 ## **Conclusion**
 
